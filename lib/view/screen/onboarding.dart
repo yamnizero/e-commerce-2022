@@ -1,7 +1,7 @@
-import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/datasource/static/static.dart';
+import '../widget/onboarding/custom_slider.dart';
+import '../widget/onboarding/custombutton.dart';
+import '../widget/onboarding/dotcontroller.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -10,33 +10,22 @@ class OnBoarding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: PageView.builder(
-          itemCount: onBoardingList.length,
-          itemBuilder: (context, index) => Column(
-            children: [
-              Text(
-                onBoardingList[index].title!,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              const SizedBox(
-                height: 80,
-              ),
-              Image.asset(onBoardingList[index].image!,width:   200,height: 250,fit: BoxFit.fill,),
-              const SizedBox(
-                height: 80,
-              ),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: Text(
-                  onBoardingList[index].body!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(height: 2,color: AppColor.grey,fontWeight: FontWeight.bold,fontSize: 17),
-                ),
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            const Expanded(
+              flex: 3,
+              child: CustomSliderOnBoarding(),
+            ),
+            Expanded(
+                flex: 1,
+                child: Column(
+                  children: const [
+                    CustomDotControllerOnBoarding(),
+                    Spacer(flex: 2),
+                    CustomButtonOnBoarding(),
+                  ],
+                ))
+          ],
         ),
       ),
     );
