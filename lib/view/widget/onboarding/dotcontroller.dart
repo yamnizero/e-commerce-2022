@@ -1,4 +1,6 @@
+import 'package:ecommerc_2022/controller/onboarding_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
 import '../../../data/datasource/static/static.dart';
@@ -8,7 +10,7 @@ class CustomDotControllerOnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return  GetBuilder<OnBoardingControllerImp>(builder: ((controller) => Row (
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ...List.generate(
@@ -16,7 +18,7 @@ class CustomDotControllerOnBoarding extends StatelessWidget {
               (index) => AnimatedContainer(
             margin: const EdgeInsets.only(right: 5),
             duration: const Duration(milliseconds: 900),
-            width: 6,
+            width: controller.currentPage == index ? 20 : 5,
             height: 6,
             decoration: BoxDecoration(
                 color: AppColor.primaryColor,
@@ -24,6 +26,6 @@ class CustomDotControllerOnBoarding extends StatelessWidget {
           ),
         ),
       ],
-    );
+    )));
   }
 }

@@ -1,8 +1,10 @@
+import 'package:ecommerc_2022/controller/onboarding_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
 
-class CustomButtonOnBoarding extends StatelessWidget {
+class CustomButtonOnBoarding extends GetView<OnBoardingControllerImp> {
   const CustomButtonOnBoarding({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +17,9 @@ class CustomButtonOnBoarding extends StatelessWidget {
             horizontal: 100, vertical: 2),
         textColor: Colors.white,
         color: AppColor.primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          controller.next();
+        },
         child: const Text(
           "Continue",
           style: TextStyle(),
