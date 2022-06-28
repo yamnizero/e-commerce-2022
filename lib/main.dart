@@ -2,11 +2,11 @@ import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/view/screen/language.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'core/constant/color.dart';
+import 'core/localization/changelocal.dart';
 import 'core/localization/translation.dart';
 import 'routes.dart';
-import 'view/screen/onboarding.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,10 +19,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LocaleController controller = Get.put(LocaleController());
     return GetMaterialApp(
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      locale: controller.language,
       theme: ThemeData(
         fontFamily: "PlayfairDisplay",
         textTheme: const TextTheme(
