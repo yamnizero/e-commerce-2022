@@ -1,4 +1,3 @@
-import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/localization/changelocal.dart';
 import 'package:flutter/material.dart';
