@@ -2,13 +2,13 @@
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controller/auth/forget_password_controller.dart';
-import '../../../controller/auth/signup_controller.dart';
-import '../../widget/auth/custom_buttom_auth.dart';
-import '../../widget/auth/custom_text_body_auth.dart';
-import '../../widget/auth/custom_text_title_auth.dart';
-import '../../widget/auth/customtextformauth.dart';
-import '../../widget/auth/text_signup.dart';
+import '../../../../controller/auth/forget_password_controller.dart';
+import '../../../../controller/auth/signup_controller.dart';
+import '../../../widget/auth/custom_buttom_auth.dart';
+import '../../../widget/auth/custom_text_body_auth.dart';
+import '../../../widget/auth/custom_text_title_auth.dart';
+import '../../../widget/auth/customtextformauth.dart';
+import '../../../widget/auth/text_signup.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({Key? key}) : super(key: key);

@@ -32,7 +32,7 @@ class SignUpControllerImp extends SignUpController{
 
   @override
   singUp() {
-
+    Get.offNamed(AppRoutes.checkEmail);
   }
 
   @override
