@@ -1,4 +1,5 @@
 import 'package:ecommerc_2022/core/services/services.dart';
+import 'package:ecommerc_2022/test.dart';
 import 'package:ecommerc_2022/view/screen/language.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,9 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.blue,
       ),
-      home: const  Language(),
+      home:
+      const  Language(),
+      // const  Test(),
       routes: routes,
     );
   }

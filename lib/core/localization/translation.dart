@@ -89,6 +89,5 @@ class MyTranslation extends Translations {
       "37": "congratulations",
       "38": "successfully registered"
     }
-
       };
 }

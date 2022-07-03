@@ -25,8 +25,8 @@ class SignUpControllerImp extends SignUpController{
   void dispose() {
     email.dispose();
     password.dispose();
-    // phone.dispose();
-    // username.dispose();
+    phone.dispose();
+    username.dispose();
     super.dispose();
   }
 
