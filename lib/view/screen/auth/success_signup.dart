@@ -1,6 +1,6 @@
+import 'package:ecommerc_2022/controller/auth/success_signup_controller.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/view/widget/auth/custom_buttom_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +9,7 @@ class SuccessSignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SuccessSignUpControllerImp controller = Get.put(SuccessSignUpControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -41,7 +42,7 @@ class SuccessSignUp extends StatelessWidget {
             child: CustomButtonAuth(
                 text: "31".tr,
                 onPressed: () {
-                  // controller.signUp();
+                 controller.goToPageLogin();
                 }),
           ),
           const SizedBox(height: 30)

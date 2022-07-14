@@ -1,8 +1,10 @@
 import 'package:ecommerc_2022/core/constant/color.dart';
+import 'package:ecommerc_2022/core/function/validator_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/auth/login_controller.dart';
+import '../../../core/function/alertexitapp.dart';
 import '../../widget/auth/custom_buttom_auth.dart';
 import '../../widget/auth/custom_text_body_auth.dart';
 import '../../widget/auth/custom_text_title_auth.dart';
@@ -28,62 +30,85 @@ class Login extends StatelessWidget {
                 ),
           ),
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-          child: ListView(
-            children: [
-              const LogoAuth(),
-              CustomTextTitleAuth(
-                text: "10".tr,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-               CustomTextBodyAuth(
-                text:
-                "11".tr,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-               CustomTextFormAuth(
-                myController: controller.email,
-                hintText: "12".tr,
-                iconData: Icons.email_outlined,
-                label:  "18".tr,
+        body: WillPopScope(
+          onWillPop: alertExitApp,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+            child: Form(
+              key: controller.formState,
+              child: ListView(
+                children: [
+                  const LogoAuth(),
+                  CustomTextTitleAuth(
+                    text: "10".tr,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextBodyAuth(
+                    text:
+                    "11".tr,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextFormAuth(
+                    valid: (val){
+                      return validInput(val!, 5, 100, "email");
+                    },
+                    isNumber: false,
+                    myController: controller.email,
+                    hintText: "12".tr,
+                    iconData: Icons.email_outlined,
+                    label:  "18".tr,
 
+                  ),
+                 GetBuilder<LoginControllerImp>(
+                   builder: (controller) =>  CustomTextFormAuth(
+                   obscureText: controller.isShowPassword ,
+                   onTapIcon: (){
+                     controller.showPassword();
+                   },
+                   valid: (val){
+                     return validInput(val!, 5, 30, "password");
+                   },
+                   isNumber: false,
+                   myController: controller.password,
+                   hintText: "13".tr,
+                   iconData: Icons.lock_outline,
+                   label: "19".tr,
+                 ),
+                 ),
+                  InkWell(
+                    onTap: (){
+                      controller.goToForgetPassword();
+                    },
+                    child: Text(
+                      "14".tr,
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                  CustomButtonAuth(
+                    text: "15".tr,
+                    onPressed: () {
+                      controller.login();
+                    },
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  CustomTextSignUpOrSignIn(
+                      textOne: "16".tr,
+                      textTwo:  "17".tr,
+                      onTap: (){
+                        controller.goToSignUp();
+                      }
+                  )
+                ],
               ),
-               CustomTextFormAuth(
-                myController: controller.password,
-                hintText: "13".tr,
-                iconData: Icons.lock_outline,
-                label: "19".tr,
-              ),
-               InkWell(
-                 onTap: (){
-                   controller.goToForgetPassword();
-                 },
-                 child: Text(
-                  "14".tr,
-                  textAlign: TextAlign.end,
-              ),
-               ),
-              CustomButtonAuth(
-                text: "15".tr,
-                onPressed: () {},
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              CustomTextSignUpOrSignIn(
-                 textOne: "16".tr,
-                textTwo:  "17".tr,
-                onTap: (){
-                  controller.goToSignUp();
-                }
-              )
-            ],
+            ),
           ),
+
         ),
     );
   }

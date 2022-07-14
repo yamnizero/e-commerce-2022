@@ -1,3 +1,4 @@
+import 'package:ecommerc_2022/controller/auth/success_reset_password_controller.dart';
 import 'package:ecommerc_2022/view/widget/auth/custom_buttom_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class SuccessResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SuccessResetPasswordControllerImp controller = Get.put(SuccessResetPasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -37,7 +39,7 @@ class SuccessResetPassword extends StatelessWidget {
             child: CustomButtonAuth(
                 text: "31".tr,
                 onPressed: () {
-                  // controller.signUp();
+                  controller.goToPageLogin();
                 }),
           ),
           const SizedBox(height: 30)
