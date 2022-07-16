@@ -1,9 +1,6 @@
 import 'package:ecommerc_2022/core/services/services.dart';
-import 'package:ecommerc_2022/test.dart';
-import 'package:ecommerc_2022/view/screen/language.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'core/constant/color.dart';
 import 'core/localization/changelocal.dart';
 import 'core/localization/translation.dart';
 import 'routes.dart';
@@ -27,10 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       locale: controller.language,
       theme: controller.appTheme,
-      home:
-      const  Language(),
       // const  Test(),
-      routes: routes,
+      // routes: routes,
+        getPages: routes,
     );
   }
 }

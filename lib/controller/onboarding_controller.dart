@@ -1,4 +1,5 @@
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
+import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/static/static.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ abstract class OnBoardingController extends GetxController {
 class OnBoardingControllerImp extends OnBoardingController {
   late PageController pageController;
   int currentPage = 0;
+  MyServices myServices = Get.find();
 
   @override
   void onInit() {
@@ -23,6 +25,7 @@ class OnBoardingControllerImp extends OnBoardingController {
   next() {
     currentPage ++;
     if(currentPage > onBoardingList.length -1){
+      myServices.sharedPreferences.setString("onboarding", "1");
       Get.offAllNamed(AppRoutes.login);
     }else{
       pageController.animateToPage(currentPage,
