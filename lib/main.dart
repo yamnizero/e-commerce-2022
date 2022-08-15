@@ -1,3 +1,4 @@
+import 'package:ecommerc_2022/binding/intialbindings.dart';
 import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       locale: controller.language,
       theme: controller.appTheme,
+      initialBinding: InitialBindings(),
       // const  Test(),
       // routes: routes,
         getPages: routes,
