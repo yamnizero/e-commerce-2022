@@ -15,7 +15,11 @@ class TestController extends GetxController{
     print("========================== $response controller");
     statusRequest  = handlingData(response);
     if(StatusRequest.success == statusRequest){
-      data.addAll(response['data']);
+      if(response['status'] == "success"){
+        data.addAll(response['data']);
+      }else{
+        statusRequest = StatusRequest.failure;
+      }
     }
     update();
   }

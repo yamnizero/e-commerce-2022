@@ -12,6 +12,7 @@ class Crud{
    try {
      if(await checkInternet()){
        var response = await http.post(Uri.parse(linkUrl), body: data);
+       print(response.statusCode);
        if(response.statusCode == 200 || response.statusCode == 201){
          Map responseBody = jsonDecode(response.body);
          print(responseBody);
@@ -24,7 +25,7 @@ class Crud{
        return const Left(StatusRequest.offlinefailure);
      }
    } catch(_){
-     return const Left(StatusRequest.serverfailure);
+     return const Left(StatusRequest.serverException);
    }
   }
 }

@@ -2,8 +2,12 @@ import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/class/Statusrequest.dart';
+import '../../core/function/handlingData_controller.dart';
+import '../../data/datasource/remote/auth/signup.dart';
+
 abstract class SignUpController extends GetxController{
-  singUp();
+  signUp();
   goToSignIn();
 }
 
@@ -15,6 +19,10 @@ class SignUpControllerImp extends SignUpController{
   late TextEditingController phone;
   late TextEditingController password;
 
+  late StatusRequest statusRequest;
+  SignUpData signUpData =SignUpData(Get.find());
+
+  List data = [];
 
   @override
   void onInit() {
@@ -34,9 +42,22 @@ class SignUpControllerImp extends SignUpController{
   }
 
   @override
-  singUp() {
+  signUp() async {
     if(formState.currentState!.validate()){
-      Get.offNamed(AppRoutes.verifyCodeSignUp);
+      statusRequest = StatusRequest.loading;
+      var response = await signUpData.postData(username.text, password.text, email.text, phone.text);
+      print("========================== $response controller");
+      statusRequest  = handlingData(response);
+      if(StatusRequest.success == statusRequest){
+        if(response['status'] == "success"){
+         // data.addAll(response['data']);
+           Get.offNamed(AppRoutes.verifyCodeSignUp);
+        }else{
+          Get.defaultDialog(title: "Warning" , middleText: "Phone Number Or Email Already Exists") ;
+          statusRequest = StatusRequest.failure;
+        }
+      }
+      update();
     }else{
     }
 

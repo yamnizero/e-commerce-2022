@@ -4,4 +4,8 @@ class AppLinkApi{
 
   static const String test = "$server/test.php";
 
+        /// =======================Auth==================  ///
+
+  static const String signUp = "$server/auth/signup.php";
+
 }
