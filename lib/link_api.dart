@@ -7,5 +7,7 @@ class AppLinkApi{
         /// =======================Auth==================  ///
 
   static const String signUp = "$server/auth/signup.php";
+  static const String login = "$server/auth/login.php";
+  static const String verifyCodeSignUp = "$server/auth/verfiycode.php";
 
 }

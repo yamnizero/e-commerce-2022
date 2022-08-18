@@ -2,6 +2,7 @@ import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/auth/signup_controller.dart';
+import '../../../core/class/Statusrequest.dart';
 import '../../../core/function/alertexitapp.dart';
 import '../../../core/function/validator_input.dart';
 import '../../widget/auth/custom_buttom_auth.dart';
@@ -15,7 +16,7 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => SignUpControllerImp());
+    Get.put(SignUpControllerImp());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgroundcolor,
@@ -31,7 +32,10 @@ class SignUp extends StatelessWidget {
       body: WillPopScope(
         onWillPop: alertExitApp,
         child: GetBuilder<SignUpControllerImp>(
-          builder: (controller) => Container(
+          builder: (controller) =>
+              controller.statusRequest == StatusRequest.loading ?
+                  const Center(child: Text("Loading..."),)
+              : Container(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
             child: Form(
               key: controller.formState,
@@ -113,7 +117,7 @@ class SignUp extends StatelessWidget {
             ),
           ),
         ),
-      )
+      ),
     );
   }
 }

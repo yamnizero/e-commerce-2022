@@ -1,20 +1,26 @@
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../core/class/Statusrequest.dart';
+import '../../core/function/handlingData_controller.dart';
+import '../../data/datasource/remote/auth/verfiycodesginup.dart';
 
 abstract class VerifyCodeSignUpController extends GetxController{
   checkCode();
-  goToSuccessSignUp();
+  goToSuccessSignUp(String verifyCodeSignUp);
 }
 
 class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController{
 
-  late String verifyCode;
+  VerifyCodeSignUpData verifyCodeSignUpData = VerifyCodeSignUpData(Get.find());
+
+  StatusRequest? statusRequest;
+
+  String? email;
 
 
   @override
   void onInit() {
-
+    email = Get.arguments['email'] ;
     super.onInit();
   }
 
@@ -23,7 +29,21 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController{
   checkCode() {}
 
   @override
-  goToSuccessSignUp() {
+  goToSuccessSignUp( verifyCodeSignUp )  async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await verifyCodeSignUpData.postData( email!, verifyCodeSignUp);
+    print("========================== $response controller");
+    statusRequest  = handlingData(response);
+    if(StatusRequest.success == statusRequest){
+      if(response['status'] == "success"){
+        Get.offNamed(AppRoutes.successSignUp);
+      }else{
+        Get.defaultDialog(title: "Warning" , middleText: "Verify Code Not Correct") ;
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
     Get.offNamed(AppRoutes.successSignUp);
   }
 

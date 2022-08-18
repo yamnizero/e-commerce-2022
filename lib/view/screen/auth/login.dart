@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/auth/login_controller.dart';
+import '../../../core/class/Statusrequest.dart';
 import '../../../core/function/alertexitapp.dart';
 import '../../widget/auth/custom_buttom_auth.dart';
 import '../../widget/auth/custom_text_body_auth.dart';
@@ -17,99 +18,103 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginControllerImp controller =  Get.put(LoginControllerImp());
+    Get.put(LoginControllerImp());
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColor.backgroundcolor,
-          elevation: 0.0,
-          centerTitle: true,
-          title: Text(
-            "Sign In",
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  color: AppColor.grey,
-                ),
-          ),
+      appBar: AppBar(
+        backgroundColor: AppColor.backgroundcolor,
+        elevation: 0.0,
+        centerTitle: true,
+        title: Text(
+          "Sign In",
+          style: Theme.of(context).textTheme.headline1!.copyWith(
+                color: AppColor.grey,
+              ),
         ),
-        body: WillPopScope(
-          onWillPop: alertExitApp,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-            child: Form(
-              key: controller.formState,
-              child: ListView(
-                children: [
-                  const LogoAuth(),
-                  CustomTextTitleAuth(
-                    text: "10".tr,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomTextBodyAuth(
-                    text:
-                    "11".tr,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextFormAuth(
-                    valid: (val){
-                      return validInput(val!, 5, 100, "email");
-                    },
-                    isNumber: false,
-                    myController: controller.email,
-                    hintText: "12".tr,
-                    iconData: Icons.email_outlined,
-                    label:  "18".tr,
-
-                  ),
-                 GetBuilder<LoginControllerImp>(
-                   builder: (controller) =>  CustomTextFormAuth(
-                   obscureText: controller.isShowPassword ,
-                   onTapIcon: (){
-                     controller.showPassword();
-                   },
-                   valid: (val){
-                     return validInput(val!, 5, 30, "password");
-                   },
-                   isNumber: false,
-                   myController: controller.password,
-                   hintText: "13".tr,
-                   iconData: Icons.lock_outline,
-                   label: "19".tr,
-                 ),
-                 ),
-                  InkWell(
-                    onTap: (){
-                      controller.goToForgetPassword();
-                    },
-                    child: Text(
-                      "14".tr,
-                      textAlign: TextAlign.end,
+      ),
+      body: WillPopScope(
+        onWillPop: alertExitApp,
+        child: GetBuilder<LoginControllerImp>(
+          builder: (controller) => controller.statusRequest ==
+                  StatusRequest.loading
+              ? const Center(
+                  child: Text("Loading..."),
+                )
+              : Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Form(
+                    key: controller.formState,
+                    child: ListView(
+                      children: [
+                        const LogoAuth(),
+                        CustomTextTitleAuth(
+                          text: "10".tr,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomTextBodyAuth(
+                          text: "11".tr,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        CustomTextFormAuth(
+                          valid: (val) {
+                            return validInput(val!, 5, 100, "email");
+                          },
+                          isNumber: false,
+                          myController: controller.email,
+                          hintText: "12".tr,
+                          iconData: Icons.email_outlined,
+                          label: "18".tr,
+                        ),
+                        GetBuilder<LoginControllerImp>(
+                          builder: (controller) => CustomTextFormAuth(
+                            obscureText: controller.isShowPassword,
+                            onTapIcon: () {
+                              controller.showPassword();
+                            },
+                            valid: (val) {
+                              return validInput(val!, 5, 30, "password");
+                            },
+                            isNumber: false,
+                            myController: controller.password,
+                            hintText: "13".tr,
+                            iconData: Icons.lock_outline,
+                            label: "19".tr,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            controller.goToForgetPassword();
+                          },
+                          child: Text(
+                            "14".tr,
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                        CustomButtonAuth(
+                          text: "15".tr,
+                          onPressed: () {
+                            controller.login();
+                          },
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        CustomTextSignUpOrSignIn(
+                            textOne: "16".tr,
+                            textTwo: "17".tr,
+                            onTap: () {
+                              controller.goToSignUp();
+                            })
+                      ],
                     ),
                   ),
-                  CustomButtonAuth(
-                    text: "15".tr,
-                    onPressed: () {
-                      controller.login();
-                    },
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  CustomTextSignUpOrSignIn(
-                      textOne: "16".tr,
-                      textTwo:  "17".tr,
-                      onTap: (){
-                        controller.goToSignUp();
-                      }
-                  )
-                ],
-              ),
-            ),
-          ),
-
+                ),
         ),
+      ),
     );
   }
 }
