@@ -1,22 +1,21 @@
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../core/class/Statusrequest.dart';
 import '../../core/function/handlingData_controller.dart';
-import '../../data/datasource/remote/auth/verfiycodesginup.dart';
+import '../../data/datasource/remote/forgetPassword/verifyCode_forgetPassword.dart';
 
-abstract class VerifyCodeSignUpController extends GetxController{
+abstract class VerifyCodeController extends GetxController{
   checkCode();
-  goToSuccessSignUp(String verifyCodeSignUp);
+  goToResetPassword(String verifyCode);
 }
 
-class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController{
+class VerifyCodeControllerImp extends VerifyCodeController{
 
-  VerifyCodeSignUpData verifyCodeSignUpData = VerifyCodeSignUpData(Get.find());
-
-  StatusRequest? statusRequest;
-
+  VerifyCodeForgetPasswordData verifyCodeForgetPasswordData = VerifyCodeForgetPasswordData(Get.find());
   String? email;
-
+  StatusRequest? statusRequest;
 
   @override
   void onInit() {
@@ -29,15 +28,17 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController{
   checkCode() {}
 
   @override
-  goToSuccessSignUp( verifyCodeSignUp )  async {
+  goToResetPassword( verifyCode) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await verifyCodeSignUpData.postData( email!, verifyCodeSignUp);
+    var response = await verifyCodeForgetPasswordData.postData( email!, verifyCode);
     print("========================== $response controller");
     statusRequest  = handlingData(response);
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
-        Get.offNamed(AppRoutes.successSignUp);
+        Get.offNamed(AppRoutes.resetPassword,arguments: {
+          "email" : email
+        });
       }else{
         Get.defaultDialog(title: "Warning" , middleText: "VerifyCode Not Correct") ;
         statusRequest = StatusRequest.failure;

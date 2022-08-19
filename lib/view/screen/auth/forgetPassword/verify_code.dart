@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/auth/verifyCode_controller.dart';
+import '../../../../controller/forgetPassword/verifyCode_controller.dart';
 import '../../../widget/auth/custom_text_body_auth.dart';
 import '../../../widget/auth/custom_text_title_auth.dart';
 
@@ -59,7 +59,7 @@ class VerifyCode extends StatelessWidget {
               },
               //runs when every textfield is filled
               onSubmit: (String verificationCode){
-                controller.goToResetPassword();
+                controller.goToResetPassword(verificationCode);
               }, // end onSubmit
             ),
 

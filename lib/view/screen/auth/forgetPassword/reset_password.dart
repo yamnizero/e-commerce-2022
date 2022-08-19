@@ -1,7 +1,7 @@
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../controller/auth/resetPassword_controller.dart';
+import '../../../../controller/forgetPassword/resetPassword_controller.dart';
 import '../../../widget/auth/custom_buttom_auth.dart';
 import '../../../widget/auth/custom_text_body_auth.dart';
 import '../../../widget/auth/custom_text_title_auth.dart';

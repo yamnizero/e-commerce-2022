@@ -41,12 +41,6 @@ class LoginControllerImp extends LoginController{
 
   @override
   login()  async {
-    // var formData = formState.currentState;
-    // if(formData!.validate()){
-    //   print(" Valid");
-    // }else{
-    //   print("not Valid");
-    // }
     if(formState.currentState!.validate()){
       statusRequest = StatusRequest.loading;
       update();
