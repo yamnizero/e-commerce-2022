@@ -13,7 +13,7 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController{
 
   VerifyCodeSignUpData verifyCodeSignUpData = VerifyCodeSignUpData(Get.find());
 
-  StatusRequest? statusRequest;
+  StatusRequest statusRequest =StatusRequest.none;
 
   String? email;
 

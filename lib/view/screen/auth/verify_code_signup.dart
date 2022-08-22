@@ -6,6 +6,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/auth/verify_code_signup_controller.dart';
+import '../../../core/class/handling_data_view.dart';
 import '../../widget/auth/custom_text_body_auth.dart';
 import '../../widget/auth/custom_text_title_auth.dart';
 
@@ -31,9 +32,9 @@ class VerifyCodeSignUp extends StatelessWidget {
       ),
       body: GetBuilder<VerifyCodeSignUpControllerImp>(
         builder: (controller) =>
-        controller.statusRequest == StatusRequest.loading ?
-            const Center(child: Text("loading..."),)
-            : Container(
+            HandlingDataRequest(
+                statusRequest: controller.statusRequest ,
+                widget: Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
           child: ListView (
             children: [
@@ -74,6 +75,7 @@ class VerifyCodeSignUp extends StatelessWidget {
             ],
           ),
         ),
+            ),
       ),
     );
   }

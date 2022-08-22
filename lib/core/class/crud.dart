@@ -19,10 +19,10 @@ class Crud{
          return Right(responseBody);
 
        }else{
-         return const Left(StatusRequest.serverfailure);
+         return const Left(StatusRequest.serverFailure);
        }
      }else{
-       return const Left(StatusRequest.offlinefailure);
+       return const Left(StatusRequest.offlineFailure);
      }
    } catch(_){
      return const Left(StatusRequest.serverException);

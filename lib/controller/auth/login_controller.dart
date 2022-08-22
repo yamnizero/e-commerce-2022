@@ -19,7 +19,7 @@ class LoginControllerImp extends LoginController{
   late TextEditingController password;
   bool isShowPassword = true;
 
-    StatusRequest? statusRequest;
+    StatusRequest statusRequest = StatusRequest.none;
 
   showPassword(){
     isShowPassword = isShowPassword == true  ? false : true;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/auth/signup_controller.dart';
 import '../../../core/class/Statusrequest.dart';
+import '../../../core/class/handling_data_view.dart';
 import '../../../core/function/alertexitapp.dart';
 import '../../../core/function/validator_input.dart';
 import '../../widget/auth/custom_buttom_auth.dart';
@@ -33,9 +34,9 @@ class SignUp extends StatelessWidget {
         onWillPop: alertExitApp,
         child: GetBuilder<SignUpControllerImp>(
           builder: (controller) =>
-              controller.statusRequest == StatusRequest.loading ?
-                  const Center(child: Text("Loading..."),)
-              : Container(
+    HandlingDataRequest(
+    statusRequest: controller.statusRequest ,
+    widget: Container(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
             child: Form(
               key: controller.formState,
@@ -115,7 +116,8 @@ class SignUp extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          )
+    ),
         ),
       ),
     );
