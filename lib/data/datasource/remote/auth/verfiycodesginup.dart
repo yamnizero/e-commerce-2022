@@ -9,7 +9,7 @@ class VerifyCodeSignUpData{
   postData(String email,String verifyCode) async {
     var response = await crud.postData(AppLinkApi.verifyCodeSignUp,{
       "email" : email,
-      "verifyCode" : verifyCode,
+      "verifycode" : verifyCode,
     });
     return response.fold((l) => l, (r) => r);
   }

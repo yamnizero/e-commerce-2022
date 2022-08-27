@@ -1,9 +1,9 @@
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
+import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/remote/auth/login.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../core/class/Statusrequest.dart';
 import '../../core/function/handlingData_controller.dart';
 
@@ -14,11 +14,12 @@ abstract class LoginController extends GetxController{
 }
 
 class LoginControllerImp extends LoginController{
-  LoginData loginData = LoginData(Get.find());
+    LoginData loginData = LoginData(Get.find());
     GlobalKey<FormState> formState = GlobalKey<FormState>();
   late TextEditingController email;
   late TextEditingController password;
   bool isShowPassword = true;
+  MyServices myServices = Get.find();
 
     StatusRequest statusRequest = StatusRequest.none;
 
@@ -55,6 +56,12 @@ class LoginControllerImp extends LoginController{
       if(StatusRequest.success == statusRequest){
         if(response['status'] == "success"){
           // data.addAll(response['data']);
+          myServices.sharedPreferences.setString("id", response['data']['users_id']);
+          myServices.sharedPreferences.setString("username", response['data']['users_name']);
+          myServices.sharedPreferences.setString("email", response['data']['users_email']);
+          myServices.sharedPreferences.setString("phone", response['data']['users_phone']);
+          //
+          myServices.sharedPreferences.setString("step", "2");
           Get.offNamed(AppRoutes.homeScreen);
         }else{
           Get.defaultDialog(title: "Warning" , middleText: "Email Or Password Not Correct") ;
