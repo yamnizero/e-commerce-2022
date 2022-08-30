@@ -81,15 +81,20 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white,
                           fontSize: 20,
                         ),
-
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 160,
-                    width: 160,
-                    decoration: BoxDecoration(
 
+                  ),
+                  Positioned(
+                    top: -20,
+                    right: -20,
+                    child: Container(
+                      height: 160,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        color: AppColor.secoundColor,
+                        borderRadius: BorderRadius.circular(160),
+                      ),
                     ),
                   )
                 ],

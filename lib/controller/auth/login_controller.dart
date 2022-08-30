@@ -1,3 +1,4 @@
+import 'package:ecommerc_2022/core/class/crud.dart';
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/remote/auth/login.dart';
@@ -71,6 +72,7 @@ class LoginControllerImp extends LoginController{
       update();
     }else{
     }
+
   }
 
   @override
