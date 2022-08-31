@@ -13,7 +13,7 @@ class SuccessSignUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0.0,
         title: Text('32'.tr,
             style: Theme.of(context)

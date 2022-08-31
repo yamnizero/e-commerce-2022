@@ -17,7 +17,7 @@ class ResetPassword extends StatelessWidget {
     Get.put(ResetPasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.backgroundcolor,
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0.0,
         centerTitle: true,
         title: Text(

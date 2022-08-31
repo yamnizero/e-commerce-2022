@@ -22,7 +22,7 @@ class Login extends StatelessWidget {
     Get.put(LoginControllerImp());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.backgroundcolor,
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0.0,
         centerTitle: true,
         title: Text(
