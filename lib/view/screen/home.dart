@@ -2,6 +2,7 @@ import 'package:ecommerc_2022/controller/home_controller.dart';
 import 'package:ecommerc_2022/core/class/handling_data_view.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/link_api.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -104,8 +105,8 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                height: 70,
+              SizedBox(
+                height: 110,
                 child: ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(
                     width: 10,
@@ -113,21 +114,80 @@ class HomeScreen extends StatelessWidget {
                   itemCount: controller.categories.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 70,
-                      width: 70,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration:  BoxDecoration(
-                        color: AppColor.thirdColor,
-                        borderRadius: BorderRadius.circular(20)
-                      ),
-                      child: SvgPicture.network(
-                        "${AppLinkApi.imagesCategories}/${controller.categories[index]['categories_image']}",
-                        color: AppColor.secondColor,
-                      ),
+                    return Column(
+                      children: [
+                        Container(
+                          height: 70,
+                          width: 70,
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              color: AppColor.thirdColor,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: SvgPicture.network(
+                            "${AppLinkApi.imagesCategories}/${controller.categories[index]['categories_image']}",
+                            color: AppColor.secondColor,
+                          ),
+                        ),
+                        Text(
+                          "${controller.categories[index]['categories_image']}",
+                          style: const TextStyle(
+                              fontSize: 13, color: AppColor.black),
+                        )
+                      ],
                     );
                   },
                 ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Product for you",
+                style: TextStyle(
+                    fontSize: 18,
+                    color: AppColor.primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 150,
+
+                child: ListView.builder(
+                    itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, i) {
+                      return Stack(
+                        children: [
+                          Container(
+                            padding:const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Image.asset(
+                              "assets/images/2.png",
+                              height: 100,
+                              width: 150,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Container(
+                            height: 120 ,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              color: AppColor.black.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                          ),
+                          const Positioned(
+                              left:10,
+                              child: Text("Laptop Surface Go 2",style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17
+                          ),))
+                        ],
+                      );
+                    }),
               )
             ],
           ),
