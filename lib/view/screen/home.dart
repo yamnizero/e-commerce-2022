@@ -155,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                 height: 150,
 
                 child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: controller.items.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, i) {
                       return Stack(
@@ -163,8 +163,8 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             padding:const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                             margin: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Image.asset(
-                              "assets/images/2.png",
+                            child: Image.network(
+                              "${AppLinkApi.imagesItems}/${controller.items[i]['items_image']}",
                               height: 100,
                               width: 150,
                               fit: BoxFit.fill,
@@ -178,9 +178,10 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)
                             ),
                           ),
-                          const Positioned(
+                           Positioned(
                               left:10,
-                              child: Text("Laptop Surface Go 2",style: TextStyle(
+                              child: Text("${controller.items[i]['items_name']}",
+                                style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 17
