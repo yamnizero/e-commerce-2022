@@ -9,6 +9,7 @@ import 'package:ecommerc_2022/view/screen/auth/forgetPassword/success_reset_pass
 import 'package:ecommerc_2022/view/screen/auth/success_signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/verify_code_signup.dart';
 import 'package:ecommerc_2022/view/screen/home.dart';
+import 'package:ecommerc_2022/view/screen/home_screen.dart';
 import 'package:ecommerc_2022/view/screen/onboarding.dart';
 import 'package:ecommerc_2022/view/test_view.dart';
 import 'package:get/get.dart';
@@ -35,5 +36,5 @@ List<GetPage<dynamic>>? routes= [
   GetPage(name: AppRoutes.onBoarding, page: ()=> const OnBoarding()) ,
 
   ///HomePage
-  GetPage(name: AppRoutes.homeScreen, page: ()=> const HomeScreen()) ,
+  GetPage(name: AppRoutes.homePage, page: ()=> const HomeScreen()) ,
 ];

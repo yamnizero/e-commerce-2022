@@ -63,7 +63,7 @@ class LoginControllerImp extends LoginController{
           myServices.sharedPreferences.setString("phone", response['data']['users_phone']);
           //
           myServices.sharedPreferences.setString("step", "2");
-          Get.offNamed(AppRoutes.homeScreen);
+          Get.offNamed(AppRoutes.homePage);
         }else{
           Get.defaultDialog(title: "Warning" , middleText: "Email Or Password Not Correct") ;
           statusRequest = StatusRequest.failure;

@@ -13,6 +13,6 @@ class AppRoutes{
   static const String onBoarding = "/onboarding";
 
   ///HomePage
-  static const String homeScreen = "/homeScreen";
+  static const String homePage = "/homePage";
 
 }

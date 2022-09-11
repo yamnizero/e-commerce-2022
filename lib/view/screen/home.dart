@@ -1,199 +1,49 @@
 import 'package:ecommerc_2022/controller/home_controller.dart';
 import 'package:ecommerc_2022/core/class/handling_data_view.dart';
-import 'package:ecommerc_2022/core/constant/color.dart';
-import 'package:ecommerc_2022/link_api.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerc_2022/view/widget/home/custom_list_categories_home.dart';
+import 'package:ecommerc_2022/view/widget/home/custom_title_home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+import '../widget/home/custom_appbar.dart';
+import '../widget/home/custom_card_suprise_home.dart';
+import '../widget/home/custome_list_items_home.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put(HomeControllerImp());
 
-    return Scaffold(
-        body: GetBuilder<HomeControllerImp>(
+    return  GetBuilder<HomeControllerImp>(
       builder: (controller) => HandlingDataView(
         statusRequest: controller.statusRequest,
         widget: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
             children: [
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            hintText: "Find Product",
-                            hintStyle: const TextStyle(fontSize: 18),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200]),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 60,
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.notifications_active_outlined,
-                          size: 30,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+              CustomAppBar(
+                titleAppbar: "Find Product",
+                opPressedIcon: () {},
+                onPressedSearch: () {},
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 15),
-                child: Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: AppColor.primaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const ListTile(
-                        title: Text(
-                          "A summer supries",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        subtitle: Text(
-                          "Cashback 20%",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: -20,
-                      right: -20,
-                      child: Container(
-                        height: 160,
-                        width: 160,
-                        decoration: BoxDecoration(
-                          color: AppColor.secondColor,
-                          borderRadius: BorderRadius.circular(160),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+              const CustomCardSurpriseHome(
+                titleSurprise: "A summer surprise",
+                bodySurprise: "Cashback 20%",
               ),
-              SizedBox(
-                height: 110,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(
-                    width: 10,
-                  ),
-                  itemCount: controller.categories.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Container(
-                          height: 70,
-                          width: 70,
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color: AppColor.thirdColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: SvgPicture.network(
-                            "${AppLinkApi.imagesCategories}/${controller.categories[index]['categories_image']}",
-                            color: AppColor.secondColor,
-                          ),
-                        ),
-                        Text(
-                          "${controller.categories[index]['categories_image']}",
-                          style: const TextStyle(
-                              fontSize: 13, color: AppColor.black),
-                        )
-                      ],
-                    );
-                  },
-                ),
+              const CustomTitleHome(
+                titleHome: "Categories",
               ),
-              const SizedBox(
-                height: 10,
+              const CustomListCategoriesHome(),
+              const CustomTitleHome(
+                titleHome: "Product for you",
               ),
-              const Text(
-                "Product for you",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: AppColor.primaryColor,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 150,
-
-                child: ListView.builder(
-                    itemCount: controller.items.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, i) {
-                      return Stack(
-                        children: [
-                          Container(
-                            padding:const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Image.network(
-                              "${AppLinkApi.imagesItems}/${controller.items[i]['items_image']}",
-                              height: 100,
-                              width: 150,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Container(
-                            height: 120 ,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              color: AppColor.black.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                          ),
-                           Positioned(
-                              left:10,
-                              child: Text("${controller.items[i]['items_name']}",
-                                style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17
-                          ),))
-                        ],
-                      );
-                    }),
-              )
+              const CustomListItemsHome(),
             ],
           ),
         ),
       ),
-    ));
+    );
   }
 }
