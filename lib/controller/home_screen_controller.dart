@@ -27,6 +27,13 @@ class HomeScreenControllerImp extends HomeScreenController{
     ),
   ];
 
+  List titleBottomAppbar =[
+    "Home",
+    "Setting",
+    "Profile",
+    "Favorite",
+  ];
+
 
   @override
   changePage(int i) {
