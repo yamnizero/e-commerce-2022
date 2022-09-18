@@ -1,14 +1,13 @@
 import 'package:ecommerc_2022/controller/home_controller.dart';
+import 'package:ecommerc_2022/controller/items_controller.dart';
 import 'package:ecommerc_2022/data/model/categories_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
-import '../../../link_api.dart';
 
-class CustomListCategoriesHome extends GetView<HomeControllerImp> {
-  const CustomListCategoriesHome({Key? key}) : super(key: key);
+class CustomListCategoriesItems extends GetView<ItemsControllerImp> {
+  const CustomListCategoriesItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class CustomListCategoriesHome extends GetView<HomeControllerImp> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Categories(
-             i : index ,
+            i : index ,
             categoriesModel: CategoriesModel.fromJson(controller.categories[index]),);
         },
       ),
@@ -31,7 +30,7 @@ class CustomListCategoriesHome extends GetView<HomeControllerImp> {
   }
 }
 
-class Categories extends GetView<HomeControllerImp> {
+class Categories extends GetView<ItemsControllerImp> {
   final CategoriesModel   categoriesModel;
   final int? i;
   const Categories( {Key? key,required this.categoriesModel, required this.i,}) : super(key: key);
@@ -40,27 +39,22 @@ class Categories extends GetView<HomeControllerImp> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        controller.goToItems(controller.categories,i!);
+        //controller.goToItems(controller.categories,i!);
+        controller.changeCat(i!);
       },
       child: Column(
         children: [
-          Container(
-            height: 70,
-            width: 70,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                color: AppColor.thirdColor,
-                borderRadius: BorderRadius.circular(20)),
-            child: SvgPicture.network(
-              "${AppLinkApi.imagesCategories}/${categoriesModel.categoriesImage}",
-              color: AppColor.secondColor,
+          GetBuilder<ItemsControllerImp>(builder: (controller) => Container(
+            padding: const EdgeInsets.only(right: 10,left: 10,bottom: 5),
+            decoration: controller.selectedCategories == i ?  const BoxDecoration(
+                border:Border(bottom: BorderSide(width: 3,color: AppColor.primaryColor))
+            ) :null ,
+            child: Text(
+              "${categoriesModel.categoriesName}",
+              style: const TextStyle(
+                fontSize: 20, color: AppColor.black,),
             ),
-          ),
-          Text(
-            "${categoriesModel.categoriesName}",
-            style: const TextStyle(
-                fontSize: 13, color: AppColor.black),
-          )
+          ))
         ],
       ),
     );

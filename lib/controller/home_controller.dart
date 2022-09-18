@@ -1,4 +1,5 @@
 import 'package:ecommerc_2022/core/class/Statusrequest.dart';
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/function/handlingData_controller.dart';
 import 'package:ecommerc_2022/data/datasource/remote/home_data.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import '../core/services/services.dart';
 abstract class HomeController extends GetxController{
   initialData();
   getData();
+  goToItems(List categories,  int selectedCategories);
 
 }
 
@@ -50,6 +52,14 @@ class  HomeControllerImp extends HomeController{
       }
     }
     update();
+  }
+
+  @override
+  goToItems(categories,  selectedCategories) {
+   Get.toNamed(AppRoutes.itemsPage,arguments: {
+     "categories" : categories,
+     "selectedCategories" : selectedCategories,
+   });
   }
 
 }

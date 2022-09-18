@@ -8,10 +8,10 @@ import 'package:ecommerc_2022/view/screen/auth/signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/forgetPassword/success_reset_password.dart';
 import 'package:ecommerc_2022/view/screen/auth/success_signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/verify_code_signup.dart';
-import 'package:ecommerc_2022/view/screen/home.dart';
 import 'package:ecommerc_2022/view/screen/home_screen.dart';
+import 'package:ecommerc_2022/view/screen/items.dart';
 import 'package:ecommerc_2022/view/screen/onboarding.dart';
-import 'package:ecommerc_2022/view/test_view.dart';
+
 import 'package:get/get.dart';
 
 import 'view/screen/language.dart';
@@ -37,4 +37,6 @@ List<GetPage<dynamic>>? routes= [
 
   ///HomePage
   GetPage(name: AppRoutes.homePage, page: ()=> const HomeScreen()) ,
+
+  GetPage(name: AppRoutes.itemsPage, page: ()=> const Items()) ,
 ];
