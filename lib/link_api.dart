@@ -24,6 +24,8 @@ class AppLinkApi {
       "$server/forgetpassword/new_verifycode.php";
 
   /// ======================= Home ==================  ///
-
+  /// home
   static const String homePage = "$server/home.php";
+  /// items
+  static const String items = "$server/items/items.php";
 }
