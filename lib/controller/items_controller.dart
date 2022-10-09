@@ -7,8 +7,8 @@ import '../data/datasource/remote/items_data.dart';
 abstract class ItemsController extends GetxController{
 
   intialData();
-  changeCat(int val);
-  getItems(String categoryId  );
+  changeCat(int val,String catVal);
+  getItems(String categoryId );
 }
 
 class ItemsControllerImp  extends ItemsController{
@@ -37,13 +37,16 @@ class ItemsControllerImp  extends ItemsController{
 
 
   @override
-  changeCat(val) {
+  changeCat(val ,catVal) {
    selectedCategories = val;
+   catId= catVal;
+   getItems(catId!);
    update();
   }
 
   @override
   getItems(categoryId) async{
+    data.clear();
     statusRequest = StatusRequest.loading;
     var response = await itemsData.getData(categoryId);
     print("========================== $response controller");

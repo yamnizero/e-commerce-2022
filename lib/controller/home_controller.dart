@@ -16,10 +16,10 @@ abstract class HomeController extends GetxController{
 class  HomeControllerImp extends HomeController{
 
   MyServices myServices = Get.find();
-  String? username ;
   HomeData homeData =HomeData(Get.find());
-
-
+  String? username ;
+  String? id ;
+  String? lang ;
 
   List categories = [];
   List items = [];
@@ -27,7 +27,9 @@ class  HomeControllerImp extends HomeController{
 
   @override
   initialData(){
+    lang =myServices.sharedPreferences.getString("lang");
     username = myServices.sharedPreferences.getString("username");
+    id = myServices.sharedPreferences.getString("id");
   }
   @override
   void onInit() {

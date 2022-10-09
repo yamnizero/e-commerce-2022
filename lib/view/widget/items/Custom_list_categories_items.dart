@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
+import '../../../core/function/translate_date_base.dart';
 
 class CustomListCategoriesItems extends GetView<ItemsControllerImp> {
   const CustomListCategoriesItems({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class Categories extends GetView<ItemsControllerImp> {
     return InkWell(
       onTap: (){
         //controller.goToItems(controller.categories,i!);
-        controller.changeCat(i!);
+        controller.changeCat(i!,categoriesModel.categoriesId!);
       },
       child: Column(
         children: [
@@ -50,7 +51,7 @@ class Categories extends GetView<ItemsControllerImp> {
                 border:Border(bottom: BorderSide(width: 3,color: AppColor.primaryColor))
             ) :null ,
             child: Text(
-              "${categoriesModel.categoriesName}",
+              "${translateDataBase(categoriesModel.categoriesNameAr,categoriesModel.categoriesName)}",
               style: const TextStyle(
                 fontSize: 20, color: AppColor.black,),
             ),

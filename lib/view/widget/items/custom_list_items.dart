@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerc_2022/core/function/translate_date_base.dart';
 import 'package:ecommerc_2022/data/model/items_model.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class CustomListItems extends StatelessWidget {
                       fit: BoxFit.fill ,
                     ),
                      Text(
-                      itemsModel.itemsName!,
+                      translateDataBase(itemsModel.itemsNameAr!,  itemsModel.itemsName!),
                       style: const TextStyle(
                           color: AppColor.black,
                           fontSize: 16,
@@ -44,7 +45,7 @@ class CustomListItems extends StatelessWidget {
                            alignment: Alignment.bottomCenter,
                            child: Row(
                              children: [
-                               ...List.generate(5, (index) => Icon(Icons.star,size: 15,))
+                               ...List.generate(5, (index) => const Icon(Icons.star,size: 15,))
                              ],
                            ),
                          )

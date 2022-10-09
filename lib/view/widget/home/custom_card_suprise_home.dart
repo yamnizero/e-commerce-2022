@@ -1,10 +1,12 @@
+import 'package:ecommerc_2022/controller/home_controller.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CustomCardSurpriseHome extends StatelessWidget {
+class CustomCardSurpriseHome extends GetView<HomeControllerImp> {
   final String titleSurprise;
   final String bodySurprise;
-  const CustomCardSurpriseHome({Key? key,required this.titleSurprise,required this.bodySurprise}) : super(key: key);
+  const   CustomCardSurpriseHome({Key? key,required this.titleSurprise,required this.bodySurprise}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,8 @@ class CustomCardSurpriseHome extends StatelessWidget {
           ),
           Positioned(
             top: -20,
-            right: -20,
+            right: controller.lang == "en" ? -20 : null ,
+            left: controller.lang == "ar" ? -20 : null ,
             child: Container(
               height: 160,
               width: 160,

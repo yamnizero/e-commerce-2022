@@ -1,4 +1,5 @@
 import 'package:ecommerc_2022/controller/home_controller.dart';
+import 'package:ecommerc_2022/core/function/translate_date_base.dart';
 import 'package:ecommerc_2022/data/model/categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -57,7 +58,7 @@ class Categories extends GetView<HomeControllerImp> {
             ),
           ),
           Text(
-            "${categoriesModel.categoriesName}",
+            "${translateDataBase(categoriesModel.categoriesNameAr, categoriesModel.categoriesName)}",
             style: const TextStyle(
                 fontSize: 13, color: AppColor.black),
           )

@@ -17,36 +17,33 @@ class Items extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(15),
-        child: GetBuilder<ItemsControllerImp>(
-          builder: (controller) =>
-              HandlingDataView(
-                statusRequest: controller.statusRequest,
-                widget: ListView(
-                  children: [
-                    CustomAppBar(
-                      titleAppbar: "Find Product",
-                      opPressedIcon: () {},
-                      onPressedSearch: () {},
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const CustomListCategoriesItems(),
-                    GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: controller.data.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.7),
-                        itemBuilder: (context, index) {
-                          return CustomListItems(
-                            itemsModel: ItemsModel.fromJson(controller.data[index ]),
-                          );
-                        }
-                        ),
-                  ],
-                ),),
-        ),
+        child: ListView(children: [
+          CustomAppBar(
+            titleAppbar: "Find Product",
+            opPressedIcon: () {},
+            onPressedSearch: () {},
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const CustomListCategoriesItems(),
+          GetBuilder<ItemsControllerImp>(
+              builder: (controller) => HandlingDataView(
+                  statusRequest: controller.statusRequest,
+                  widget: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.data.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, childAspectRatio: 0.7),
+                      itemBuilder: (context, index) {
+                        return CustomListItems(
+                          itemsModel:
+                              ItemsModel.fromJson(controller.data[index]),
+                        );
+                      }))),
+        ]),
       ),
     );
   }
