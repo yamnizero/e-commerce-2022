@@ -6,8 +6,8 @@ class ItemsData{
   Crud crud;
   ItemsData(this.crud);
 
-  getData() async {
-    var response = await crud.postData(AppLinkApi.items,{});
+  getData(String id) async {
+    var response = await crud.postData(AppLinkApi.items,{"id" :id.toString()});
     return response.fold((l) => l, (r) => r);
   }
 }

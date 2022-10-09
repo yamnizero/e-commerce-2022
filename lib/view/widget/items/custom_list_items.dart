@@ -23,7 +23,7 @@ class CustomListItems extends StatelessWidget {
                     CachedNetworkImage(
                       imageUrl: AppLinkApi.imagesItems + "/" + itemsModel.itemsImage!,
                       height: 100,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.fill ,
                     ),
                      Text(
                       itemsModel.itemsName!,

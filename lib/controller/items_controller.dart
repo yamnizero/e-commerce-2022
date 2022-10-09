@@ -8,12 +8,13 @@ abstract class ItemsController extends GetxController{
 
   intialData();
   changeCat(int val);
-  getItems();
+  getItems(String categoryId  );
 }
 
 class ItemsControllerImp  extends ItemsController{
 
   List categories = [];
+  String? catId ;
   int? selectedCategories ;
   ItemsData itemsData =ItemsData(Get.find());
   List data = [];
@@ -29,7 +30,8 @@ class ItemsControllerImp  extends ItemsController{
   intialData() {
     categories = Get.arguments['categories'];
     selectedCategories = Get.arguments['selectedCategories'];
-    getItems();
+    catId = Get.arguments['catId'];
+    getItems(catId!);
   }
 
 
@@ -41,9 +43,9 @@ class ItemsControllerImp  extends ItemsController{
   }
 
   @override
-  getItems() async{
+  getItems(categoryId) async{
     statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData();
+    var response = await itemsData.getData(categoryId);
     print("========================== $response controller");
     statusRequest  = handlingData(response);
     if(StatusRequest.success == statusRequest){
