@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerc_2022/controller/items_controller.dart';
 import 'package:ecommerc_2022/core/function/translate_date_base.dart';
 import 'package:ecommerc_2022/data/model/items_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/constant/color.dart';
 import '../../../link_api.dart';
 
-class CustomListItems extends StatelessWidget {
+class CustomListItems extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
   const CustomListItems({Key? key,required this.itemsModel}) : super(key: key);
 
@@ -14,6 +16,9 @@ class CustomListItems extends StatelessWidget {
   Widget build(BuildContext context) {
 
           return InkWell(
+            onTap: (){
+              controller.goToPageProductDetails(itemsModel);
+            },
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -21,10 +26,13 @@ class CustomListItems extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: AppLinkApi.imagesItems + "/" + itemsModel.itemsImage!,
-                      height: 100,
-                      fit: BoxFit.fill ,
+                    Hero(
+                      tag: "${itemsModel.itemsId}",
+                      child: CachedNetworkImage(
+                        imageUrl: AppLinkApi.imagesItems + "/" + itemsModel.itemsImage!,
+                        height: 100,
+                        fit: BoxFit.fill ,
+                      ),
                     ),
                      Text(
                       translateDataBase(itemsModel.itemsNameAr!,  itemsModel.itemsName!),

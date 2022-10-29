@@ -1,4 +1,5 @@
- import 'package:get/get.dart';
+ import 'package:ecommerc_2022/data/model/items_model.dart';
+import 'package:get/get.dart';
 
 import '../core/class/Statusrequest.dart';
 import '../core/function/handlingData_controller.dart';
@@ -9,6 +10,7 @@ abstract class ItemsController extends GetxController{
   intialData();
   changeCat(int val,String catVal);
   getItems(String categoryId );
+  goToPageProductDetails(ItemsModel itemsModel);
 }
 
 class ItemsControllerImp  extends ItemsController{
@@ -61,4 +63,10 @@ class ItemsControllerImp  extends ItemsController{
     update();
   }
 
+  @override
+  goToPageProductDetails( itemsModel){
+    Get.toNamed("productDetails",arguments: {
+      "itemsModel" : itemsModel
+    });
+  }
 }

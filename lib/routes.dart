@@ -11,6 +11,7 @@ import 'package:ecommerc_2022/view/screen/auth/verify_code_signup.dart';
 import 'package:ecommerc_2022/view/screen/home_screen.dart';
 import 'package:ecommerc_2022/view/screen/items.dart';
 import 'package:ecommerc_2022/view/screen/onboarding.dart';
+import 'package:ecommerc_2022/view/screen/product_details.dart';
 
 import 'package:get/get.dart';
 
@@ -21,7 +22,7 @@ List<GetPage<dynamic>>? routes= [
 
   GetPage(name: "/", page: ()=> const Language(),middlewares: [
     MyMiddleware()
-  ]) ,
+  ]),
   // GetPage(name: "/", page: () => TestView()),
   ///Auth
   GetPage(name: AppRoutes.login, page: ()=> const Login()) ,
@@ -39,4 +40,5 @@ List<GetPage<dynamic>>? routes= [
   GetPage(name: AppRoutes.homePage, page: ()=> const HomeScreen()) ,
 
   GetPage(name: AppRoutes.itemsPage, page: ()=> const Items()) ,
+  GetPage(name: AppRoutes.productDetails, page: ()=> const ProductDetails()) ,
 ];
