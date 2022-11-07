@@ -39,6 +39,7 @@ class Items extends StatelessWidget {
                               crossAxisCount: 2, childAspectRatio: 0.7),
                       itemBuilder: (context, index) {
                         return CustomListItems(
+
                           itemsModel:
                               ItemsModel.fromJson(controller.data[index]),
                         );

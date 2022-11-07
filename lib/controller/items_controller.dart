@@ -1,4 +1,5 @@
- import 'package:ecommerc_2022/data/model/items_model.dart';
+ import 'package:ecommerc_2022/core/services/services.dart';
+import 'package:ecommerc_2022/data/model/items_model.dart';
 import 'package:get/get.dart';
 
 import '../core/class/Statusrequest.dart';
@@ -21,6 +22,7 @@ class ItemsControllerImp  extends ItemsController{
   ItemsData itemsData =ItemsData(Get.find());
   List data = [];
   late StatusRequest statusRequest;
+  MyServices myServices = Get.find();
 
 
   @override
@@ -50,7 +52,7 @@ class ItemsControllerImp  extends ItemsController{
   getItems(categoryId) async{
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData(categoryId);
+    var response = await itemsData.getData(categoryId, myServices.sharedPreferences.getString("id")!);
     print("========================== $response controller");
     statusRequest  = handlingData(response);
     if(StatusRequest.success == statusRequest){
