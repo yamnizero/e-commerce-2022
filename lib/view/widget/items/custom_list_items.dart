@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerc_2022/controller/favorite_controller.dart';
 import 'package:ecommerc_2022/controller/items_controller.dart';
 import 'package:ecommerc_2022/core/function/translate_date_base.dart';
 import 'package:ecommerc_2022/data/model/items_model.dart';
@@ -77,15 +78,22 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                         fontFamily: "sans",
                         fontWeight: FontWeight.bold),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon:  Icon(
-                      itemsModel.favorite == "1"
-                          ?Icons.favorite
-                          : Icons.favorite_border_outlined,
-                      color: AppColor.primaryColor,
-                    ),
-                  )
+                  GetBuilder<FavoriteController>(
+                      builder: (controller) => IconButton(
+                            onPressed: () {
+                              if (controller.isFavorite[itemsModel.itemsId] == 1){
+                                controller.setFavorite(itemsModel.itemsId,"0");
+                              }else{
+                                controller.setFavorite(itemsModel.itemsId,"1");
+                              }
+                            },
+                            icon: Icon(
+                              controller.isFavorite[itemsModel.itemsId] == "1"
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
+                              color: AppColor.primaryColor,
+                            ),
+                          ))
                 ],
               )
             ],

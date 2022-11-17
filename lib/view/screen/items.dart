@@ -5,6 +5,7 @@ import 'package:ecommerc_2022/view/widget/items/custom_list_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/favorite_controller.dart';
 import '../widget/custom_appbar.dart';
 import '../widget/items/Custom_list_categories_items.dart';
 
@@ -14,6 +15,7 @@ class Items extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
+    FavoriteController favoriteController = Get.put(FavoriteController());
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(15),
@@ -38,8 +40,9 @@ class Items extends StatelessWidget {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2, childAspectRatio: 0.7),
                       itemBuilder: (context, index) {
+                        favoriteController.isFavorite[controller.data[index]
+                            ['items_id']] = controller.data[index]['favorite'];
                         return CustomListItems(
-
                           itemsModel:
                               ItemsModel.fromJson(controller.data[index]),
                         );
