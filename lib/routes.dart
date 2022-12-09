@@ -10,6 +10,7 @@ import 'package:ecommerc_2022/view/screen/auth/success_signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/verify_code_signup.dart';
 import 'package:ecommerc_2022/view/screen/home_screen.dart';
 import 'package:ecommerc_2022/view/screen/items.dart';
+import 'package:ecommerc_2022/view/screen/myFavorite.dart';
 import 'package:ecommerc_2022/view/screen/onboarding.dart';
 import 'package:ecommerc_2022/view/screen/product_details.dart';
 
@@ -38,7 +39,7 @@ List<GetPage<dynamic>>? routes= [
 
   ///HomePage
   GetPage(name: AppRoutes.homePage, page: ()=> const HomeScreen()) ,
-
   GetPage(name: AppRoutes.itemsPage, page: ()=> const Items()) ,
   GetPage(name: AppRoutes.productDetails, page: ()=> const ProductDetails()) ,
+  GetPage(name: AppRoutes.myFavorite, page: ()=> const MyFavorite()) ,
 ];

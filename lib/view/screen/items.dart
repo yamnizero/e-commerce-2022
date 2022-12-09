@@ -24,6 +24,7 @@ class Items extends StatelessWidget {
             titleAppbar: "Find Product",
             opPressedIcon: () {},
             onPressedSearch: () {},
+            opPressedIconFavorite: (){},
           ),
           const SizedBox(
             height: 20,

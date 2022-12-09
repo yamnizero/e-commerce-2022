@@ -1,5 +1,6 @@
 import 'package:ecommerc_2022/controller/home_controller.dart';
 import 'package:ecommerc_2022/core/class/handling_data_view.dart';
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/view/widget/home/custom_list_categories_home.dart';
 import 'package:ecommerc_2022/view/widget/home/custom_title_home.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,9 @@ class HomePage extends StatelessWidget {
                 titleAppbar: "Find Product",
                 opPressedIcon: () {},
                 onPressedSearch: () {},
+                opPressedIconFavorite: (){
+                  Get.toNamed(AppRoutes.myFavorite);
+                },
               ),
               const CustomCardSurpriseHome(
                 titleSurprise: "A summer surprise",
