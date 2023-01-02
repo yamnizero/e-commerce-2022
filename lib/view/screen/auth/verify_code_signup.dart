@@ -45,9 +45,9 @@ class VerifyCodeSignUp extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const CustomTextBodyAuth(
+               CustomTextBodyAuth(
                 text:
-                "Please Enter The Digit Code Sent To yamni.zero@gmail.com",
+                "Please Enter The Digit Code Sent To ${controller.email}",
               ),
               const SizedBox(
                 height: 15,
@@ -56,7 +56,7 @@ class VerifyCodeSignUp extends StatelessWidget {
                 fieldWidth: 50.0,
                 borderRadius: BorderRadius.circular(20),
                 numberOfFields: 5,
-                borderColor: Color(0xFF512DA8),
+                borderColor: const Color(0xFF512DA8),
                 //set to true to show as box or false to show as dash
                 showFieldAsBox: true,
                 //runs when a code is typed in
@@ -72,6 +72,16 @@ class VerifyCodeSignUp extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
+              InkWell(
+                onTap: (){
+                  controller.reSend();
+                },
+                child: const Center(child: Text("Resend verify code",style: TextStyle(
+                  color: AppColor.primaryColor,
+                  fontSize: 22,
+
+                ),)),
+              )
             ],
           ),
         ),

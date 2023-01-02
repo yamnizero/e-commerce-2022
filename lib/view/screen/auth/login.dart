@@ -2,9 +2,7 @@ import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/core/function/validator_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../controller/auth/login_controller.dart';
-import '../../../core/class/Statusrequest.dart';
 import '../../../core/class/handling_data_view.dart';
 import '../../../core/function/alertexitapp.dart';
 import '../../widget/auth/custom_buttom_auth.dart';

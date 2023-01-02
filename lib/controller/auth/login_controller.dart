@@ -1,4 +1,3 @@
-import 'package:ecommerc_2022/core/class/crud.dart';
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/remote/auth/login.dart';
@@ -57,12 +56,16 @@ class LoginControllerImp extends LoginController{
       if(StatusRequest.success == statusRequest){
         if(response['status'] == "success"){
           // data.addAll(response['data']);
-          myServices.sharedPreferences.setString("id", response['data']['users_id']);
-          myServices.sharedPreferences.setString("username", response['data']['users_name']);
-          myServices.sharedPreferences.setString("email", response['data']['users_email']);
-          myServices.sharedPreferences.setString("phone", response['data']['users_phone']);
-          //
-          myServices.sharedPreferences.setString("step", "2");
+          if(response['data']['users_approve'] == "1"){
+            myServices.sharedPreferences.setString("id", response['data']['users_id']);
+            myServices.sharedPreferences.setString("username", response['data']['users_name']);
+            myServices.sharedPreferences.setString("email", response['data']['users_email']);
+            myServices.sharedPreferences.setString("phone", response['data']['users_phone']);
+            //
+            myServices.sharedPreferences.setString("step", "2");
+          }else{
+            Get.toNamed(AppRoutes.verifyCodeSignUp,arguments: {"email" : email.text});
+          }
           Get.offNamed(AppRoutes.homePage);
         }else{
           Get.defaultDialog(title: "Warning" , middleText: "Email Or Password Not Correct") ;

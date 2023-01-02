@@ -5,14 +5,11 @@ import 'package:ecommerc_2022/data/datasource/remote/myFavoriteView_data.dart';
 import 'package:ecommerc_2022/data/model/myFavorite_model.dart';
 import 'package:get/get.dart';
 
-class MyFavoriteViewController extends  GetxController{
-
-  MyFavoriteViewData myFavoriteViewData =MyFavoriteViewData(Get.find());
+class MyFavoriteViewController extends GetxController {
+  MyFavoriteViewData myFavoriteViewData = MyFavoriteViewData(Get.find());
   List<MyFavoriteModel> data = [];
   late StatusRequest statusRequest;
   MyServices myServices = Get.find();
-
-
 
   getData() async {
     data.clear();
@@ -21,17 +18,26 @@ class MyFavoriteViewController extends  GetxController{
       myServices.sharedPreferences.getString("id")!,
     );
     print("========================== $response controller");
-    statusRequest  = handlingData(response);
-    if(StatusRequest.success == statusRequest){
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
       // Start backend
-      if(response['status'] == "success"){
-         List responseData =  response['data'];
-         data .addAll(responseData.map((e) => MyFavoriteModel.fromJson(e)));
-      }else{
+      if (response['status'] == "success") {
+        List responseData = response['data'];
+        data.addAll(responseData.map((e) => MyFavoriteModel.fromJson(e)));
+      } else {
         statusRequest = StatusRequest.failure;
       }
       //end
     }
+    update();
+  }
+
+  deleteFromFavorite(String favoriteID) {
+   // data.clear();
+   // statusRequest = StatusRequest.loading;
+    var response = myFavoriteViewData.deleteData(favoriteID);
+    data.removeWhere((element) => element.favoriteId == favoriteID);
+
     update();
   }
 

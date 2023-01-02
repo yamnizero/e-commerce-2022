@@ -14,6 +14,7 @@ class AppLinkApi {
   static const String signUp = "$server/auth/signup.php";
   static const String login = "$server/auth/login.php";
   static const String verifyCodeSignUp = "$server/auth/verfiycode.php";
+  static const String resend = "$server/auth/resend.php";
 
   /// ======================= ForgetPassword ==================  ///
 
@@ -33,4 +34,5 @@ class AppLinkApi {
   static const String favoriteAdd = "$server/favorite/add.php";
   static const String favoriteRemove = "$server/favorite/remove.php";
   static const String favoriteView = "$server/favorite/view.php";
+  static const String deleteFromFavorite = "$server/favorite/deletefromfavorite.php";
 }

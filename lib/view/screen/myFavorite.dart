@@ -5,6 +5,8 @@ import 'package:ecommerc_2022/view/widget/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widget/myFavorite/custom_list_favoriteItems.dart';
+
 class MyFavorite extends StatelessWidget {
   const MyFavorite({Key? key}) : super(key: key);
 
@@ -25,6 +27,7 @@ class MyFavorite extends StatelessWidget {
                         Get.toNamed(AppRoutes.myFavorite);
                       },
                     ),
+                    const SizedBox(height: 20,),
                     HandlingDataView(
                         statusRequest: controller.statusRequest,
                         widget: GridView.builder(
@@ -34,9 +37,12 @@ class MyFavorite extends StatelessWidget {
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
+                                  childAspectRatio: 0.7,
                           ),
                           itemBuilder: (context, index) {
-                            return  Text(controller.data[index].itemsName!);
+                            return  CustomListFavoriteItems(
+                              favoriteModel: controller.data[index],
+                            );
                           }
                           ),
                         )
