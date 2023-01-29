@@ -1,4 +1,5 @@
 import 'package:ecommerc_2022/view/screen/home.dart';
+import 'package:ecommerc_2022/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,17 +22,26 @@ class HomeScreenControllerImp extends HomeScreenController{
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [Center(child: Text("Profile"),)],
     ),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [Center(child: Text("Favorite"),)],
-    ),
+    const Settings(),
   ];
 
-  List titleBottomAppbar =[
-    "Home",
-    "Setting",
-    "Profile",
-    "Favorite",
+  List bottomAppbar =[
+    {
+      "title" : "home",
+      "icon" : Icons.home
+    },
+    {
+      "title" : "notify",
+      "icon" : Icons.notifications_active_outlined
+    },
+    {
+      "title" : "profile",
+      "icon" : Icons.person_pin_sharp
+    },
+    {
+      "title" : "settings",
+      "icon" : Icons.settings
+    },
   ];
 
 

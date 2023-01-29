@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
             children: [
               CustomAppBar(
                 titleAppbar: "Find Product",
-                opPressedIcon: () {},
+                // opPressedIcon: () {},
                 onPressedSearch: () {},
                 opPressedIconFavorite: (){
                   Get.toNamed(AppRoutes.myFavorite);
