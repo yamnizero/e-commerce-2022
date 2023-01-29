@@ -1,3 +1,4 @@
+import 'package:ecommerc_2022/controller/settings_controller.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/core/constant/imageasset.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +10,7 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsController controller = Get.put(SettingsController());
     return Container(
       child: ListView(
         children: [
@@ -32,7 +34,7 @@ class Settings extends StatelessWidget {
                   child:  CircleAvatar(
                     radius: 40,
                     backgroundColor: Colors.grey[100],
-                    backgroundImage: AssetImage(AppImageAsset.avatar),
+                    backgroundImage: const AssetImage(AppImageAsset.avatar),
                   ),
                 ),
               ),
@@ -45,17 +47,41 @@ class Settings extends StatelessWidget {
             child: Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children:  [
                   ListTile(
-                    title: Text('Title One '),
+                    title: const Text('Disable Notification'),
+                    trailing: Switch(onChanged: (val){
+
+                    },
+                      value: true,
+                    ),
+                    // onTap: (){},
                   ),
-                  Divider(),
+                  const Divider(),
                   ListTile(
-                    title: Text('Title One '),
+                    title: const Text('Address'),
+                    trailing: const Icon(Icons.location_on_outlined),
+                    onTap: (){},
                   ),
-                  Divider(),
+                  const Divider(),
                   ListTile(
-                    title: Text('Title One '),
+                    title: const Text('About us'),
+                    trailing: const Icon(Icons.help_rounded),
+                    onTap: (){},
+                  ),
+                  const  Divider(),
+                   ListTile(
+                    title: const Text('Contact us'),
+                     trailing: const Icon(Icons.phone_callback_outlined),
+                     onTap: (){},
+                  ),
+                  const Divider(),
+                  ListTile(
+                    title: const Text('Logout'),
+                    trailing: const Icon(Icons.exit_to_app),
+                    onTap: (){
+                      controller.logOut();
+                    },
                   ),
                 ],
               ),
