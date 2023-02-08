@@ -1,7 +1,6 @@
 import 'package:ecommerc_2022/controller/settings_controller.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/core/constant/imageasset.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -8,6 +8,7 @@ import 'package:ecommerc_2022/view/screen/auth/signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/forgetPassword/success_reset_password.dart';
 import 'package:ecommerc_2022/view/screen/auth/success_signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/verify_code_signup.dart';
+import 'package:ecommerc_2022/view/screen/cart.dart';
 import 'package:ecommerc_2022/view/screen/home_screen.dart';
 import 'package:ecommerc_2022/view/screen/items.dart';
 import 'package:ecommerc_2022/view/screen/myFavorite.dart';
@@ -21,10 +22,8 @@ import 'view/screen/language.dart';
 
 List<GetPage<dynamic>>? routes= [
 
-  GetPage(name: "/", page: ()=> const Language(),middlewares: [
-    MyMiddleware()
-  ]),
-  // GetPage(name: "/", page: () => TestView()),
+  // GetPage(name: "/", page: ()=> const Language(),middlewares: [MyMiddleware()]),
+  GetPage(name: "/", page: () => Cart()),
   ///Auth
   GetPage(name: AppRoutes.login, page: ()=> const Login()) ,
   GetPage(name: AppRoutes.signUp, page: ()=> const SignUp()) ,

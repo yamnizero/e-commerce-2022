@@ -22,7 +22,8 @@ class CustomListItems extends GetView<ItemsControllerImp> {
       },
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          //change to pa
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
