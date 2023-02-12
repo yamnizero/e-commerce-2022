@@ -22,8 +22,8 @@ import 'view/screen/language.dart';
 
 List<GetPage<dynamic>>? routes= [
 
-  // GetPage(name: "/", page: ()=> const Language(),middlewares: [MyMiddleware()]),
-  GetPage(name: "/", page: () => Cart()),
+  GetPage(name: "/", page: ()=> const Language(),middlewares: [MyMiddleware()]),
+  //GetPage(name: "/", page: () => Cart()),
   ///Auth
   GetPage(name: AppRoutes.login, page: ()=> const Login()) ,
   GetPage(name: AppRoutes.signUp, page: ()=> const SignUp()) ,

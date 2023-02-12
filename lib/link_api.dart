@@ -35,4 +35,11 @@ class AppLinkApi {
   static const String favoriteRemove = "$server/favorite/remove.php";
   static const String favoriteView = "$server/favorite/view.php";
   static const String deleteFromFavorite = "$server/favorite/deletefromfavorite.php";
+
+  /// cart
+  static const String cartView = "$server/cart/view.php";
+  static const String cartAdd = "$server/cart/add.php";
+  static const String cartDelete= "$server/cart/delete.php";
+
+
 }

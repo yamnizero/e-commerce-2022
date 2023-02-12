@@ -15,7 +15,7 @@ class WidgetPriceAndCountItems extends StatelessWidget {
       children: [
         Row(
           children: [
-            IconButton(onPressed: (){},
+            IconButton(onPressed: onAdd,
               icon: const Icon(Icons.add),
             ),
             Container(
@@ -26,7 +26,7 @@ class WidgetPriceAndCountItems extends StatelessWidget {
                   border: Border.all(color: Colors.black)
               ),
               child:  Text(count,style: const TextStyle(fontSize: 20,height: 1.1),),),
-            IconButton(onPressed: (){},
+            IconButton(onPressed: onRemove,
               icon: const Icon(Icons.remove),
             ),
           ],
