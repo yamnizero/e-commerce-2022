@@ -1,5 +1,7 @@
 import 'package:ecommerc_2022/controller/product_details_controller.dart';
+import 'package:ecommerc_2022/core/class/handling_data_view.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/view/widget/product_details/top_page_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,72 +23,81 @@ class ProductDetails extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           color: AppColor.secondColor,
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(AppRoutes.cart);
+          },
           child: const Text(
-            "Add To Cart",
+            "Go To Cart",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          const TopProductPageDetails(),
-          const SizedBox(
-            height: 100,
+      body: GetBuilder<ProductDetailsControllerImp>(
+        builder: (controller) => HandlingDataView(
+          statusRequest: controller.statusRequest,
+          widget: ListView(
+            children: [
+              const TopProductPageDetails(),
+              const SizedBox(
+                height: 100,
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${controller.itemsModel.itemsName}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: AppColor.black),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    WidgetPriceAndCountItems(
+                      onAdd: () {
+
+                        controller.add();
+                      },
+                      onRemove: () {
+
+                        controller.remove();
+                      },
+                      price: "${controller.itemsModel.itemsPrice}",
+                      count: "${controller.countItems}",
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: AppColor.black),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    // Text(
+                    //   "Color",
+                    //   style: Theme.of(context)
+                    //       .textTheme
+                    //       .headline1!
+                    //       .copyWith(color: AppColor.black),
+                    // ),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    // const SubItemsList()
+                  ],
+                ),
+              )
+            ],
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${controller.itemsModel.itemsName}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline1!
-                      .copyWith(color: AppColor.black),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                WidgetPriceAndCountItems(
-                  onAdd: () {
-                    controller.cartController.add(controller.itemsModel.itemsId!);
-                  },
-                  onRemove: () {
-                    controller.cartController.delete(controller.itemsModel.itemsId!);
-                  },
-                  price: "${controller.itemsModel.itemsPrice}",
-                  count: "2",
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc} ${controller.itemsModel.itemsDesc}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(color: AppColor.black),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                // Text(
-                //   "Color",
-                //   style: Theme.of(context)
-                //       .textTheme
-                //       .headline1!
-                //       .copyWith(color: AppColor.black),
-                // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // const SubItemsList()
-              ],
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

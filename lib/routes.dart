@@ -23,7 +23,7 @@ import 'view/screen/language.dart';
 List<GetPage<dynamic>>? routes= [
 
   GetPage(name: "/", page: ()=> const Language(),middlewares: [MyMiddleware()]),
-  //GetPage(name: "/", page: () => Cart()),
+
   ///Auth
   GetPage(name: AppRoutes.login, page: ()=> const Login()) ,
   GetPage(name: AppRoutes.signUp, page: ()=> const SignUp()) ,
@@ -41,4 +41,5 @@ List<GetPage<dynamic>>? routes= [
   GetPage(name: AppRoutes.itemsPage, page: ()=> const Items()) ,
   GetPage(name: AppRoutes.productDetails, page: ()=> const ProductDetails()) ,
   GetPage(name: AppRoutes.myFavorite, page: ()=> const MyFavorite()) ,
+  GetPage(name:  AppRoutes.cart, page: () => const Cart()),
 ];

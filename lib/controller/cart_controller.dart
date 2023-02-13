@@ -11,6 +11,7 @@ class CartController extends GetxController{
   late StatusRequest statusRequest;
   MyServices myServices = Get.find();
 
+
   add(String itemsid) async {
 
     statusRequest = StatusRequest.loading;
@@ -54,6 +55,32 @@ class CartController extends GetxController{
     }
   }
 
+  getCountItems(String itemsid) async{
+    statusRequest = StatusRequest.loading;
+    var response = await cartData.getCountCart(
+      myServices.sharedPreferences.getString("id")!,itemsid,
+    );
+    print("========================== $response controller");
+    statusRequest  = handlingData(response);
+    if(StatusRequest.success == statusRequest){
+      if(response['status'] == "success"){
+        int countItems = 0;
+        countItems = int.parse(response['data']);
+        print("===============================");
+        print("$countItems");
+        return countItems;
+        // data.addAll(response['data']);
+      }else{
+        statusRequest = StatusRequest.failure;
+      }
+    }
+  }
+
   view(){}
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
 
 }
