@@ -1,12 +1,25 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/core/constant/imageasset.dart';
+import 'package:ecommerc_2022/link_api.dart';
 import 'package:flutter/material.dart';
 
 class CustomItemsCartList extends StatelessWidget {
   final String name;
   final String price;
   final String count;
-  const CustomItemsCartList({Key? key, required this.name, required this.price, required this.count,}) : super(key: key);
+  final String imageName;
+  final void Function()? onAdd;
+  final  void Function()? onRemove;
+
+  const CustomItemsCartList({Key? key,
+    required this.name,
+    required this.price,
+    required this.count,
+    required this.imageName,
+    required this.onAdd,
+    required this.onRemove,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +29,10 @@ class CustomItemsCartList extends StatelessWidget {
           children: [
             Expanded(
                 flex: 2,
-                child: Image.asset(
-                  AppImageAsset.avatar,
-                  height: 90,
-                  fit: BoxFit.cover,
+                child: CachedNetworkImage(
+                  imageUrl: "${AppLinkApi.imagesItems}/$imageName",
+                  height: 80,
+
                 )),
              Expanded(
                 flex: 3,
@@ -38,7 +51,7 @@ class CustomItemsCartList extends StatelessWidget {
                     Container(
                       height: 35,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: onAdd,
                         icon: const Icon(Icons.add),
                       ),
                     ),
@@ -51,7 +64,7 @@ class CustomItemsCartList extends StatelessWidget {
                     Container(
                       height: 25,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: onRemove,
                         icon: const Icon(Icons.remove),
                       ),
                     )

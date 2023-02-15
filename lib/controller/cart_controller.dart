@@ -2,6 +2,7 @@ import 'package:ecommerc_2022/core/class/Statusrequest.dart';
 import 'package:ecommerc_2022/core/function/handlingData_controller.dart';
 import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/remote/cart_data.dart';
+import 'package:ecommerc_2022/data/model/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,10 +12,15 @@ class CartController extends GetxController{
   late StatusRequest statusRequest;
   MyServices myServices = Get.find();
 
+  List<CartModel> data =[];
+  double priceOrder =0.0;
+  int totalCountItems = 0;
+
 
   add(String itemsid) async {
 
     statusRequest = StatusRequest.loading;
+    update();
     var response = await cartData.addCart(
       myServices.sharedPreferences.getString("id")!,itemsid,
     );
@@ -31,12 +37,14 @@ class CartController extends GetxController{
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
 
   delete(String itemsid) async {
 
     statusRequest = StatusRequest.loading;
+    update();
     var response = await cartData.deleteCart(
       myServices.sharedPreferences.getString("id")!,itemsid,
     );
@@ -53,32 +61,50 @@ class CartController extends GetxController{
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
-  getCountItems(String itemsid) async{
+
+  resetVarCart(){
+    totalCountItems = 0;
+    priceOrder = 0.0;
+    data.clear();
+  }
+  refreshPage(){
+    resetVarCart();
+    view();
+  }
+
+  view() async{
     statusRequest = StatusRequest.loading;
-    var response = await cartData.getCountCart(
-      myServices.sharedPreferences.getString("id")!,itemsid,
+    update();
+    var response = await cartData.viewCart(
+      myServices.sharedPreferences.getString("id")!,
     );
     print("========================== $response controller");
     statusRequest  = handlingData(response);
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
-        int countItems = 0;
-        countItems = int.parse(response['data']);
-        print("===============================");
-        print("$countItems");
-        return countItems;
+        if(response['datacart']['status'] == 'success'){
+          List dataResponse = response['datacart']['data'] ;
+          Map dataResponseCountPrice = response['countprice'] ;
+          data.clear();
+          data.addAll(dataResponse.map((e) => CartModel.fromJson(e)));
+          totalCountItems = int.parse(dataResponseCountPrice['totalcount']);
+          priceOrder = double.parse(dataResponseCountPrice['totalprice']);
+        }
         // data.addAll(response['data']);
       }else{
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
-  view(){}
+
   @override
   void onInit() {
+    view();
     // TODO: implement onInit
     super.onInit();
   }

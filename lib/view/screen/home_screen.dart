@@ -1,5 +1,6 @@
 import 'package:ecommerc_2022/controller/home_screen_controller.dart';
 import 'package:ecommerc_2022/core/constant/color.dart';
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,9 @@ class HomeScreen extends StatelessWidget {
               body: controller.listPage.elementAt(controller.currentPage),
               floatingActionButton: FloatingActionButton(
                 backgroundColor: AppColor.primaryColor,
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.cart);
+                },
                 child: const Icon(Icons.shopping_basket_outlined),
               ),
               floatingActionButtonLocation:
