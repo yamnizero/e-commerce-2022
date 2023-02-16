@@ -2,12 +2,13 @@ import 'package:ecommerc_2022/core/class/Statusrequest.dart';
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/function/handlingData_controller.dart';
 import 'package:ecommerc_2022/data/datasource/remote/home_data.dart';
+import 'package:ecommerc_2022/data/model/items_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../core/services/services.dart';
 
-abstract class HomeController extends GetxController{
+abstract class HomeController extends SearchMixController{
   initialData();
   getData();
   goToItems(List categories,  int selectedCategories ,String categoryId);
@@ -17,28 +18,28 @@ abstract class HomeController extends GetxController{
 class  HomeControllerImp extends HomeController{
 
   MyServices myServices = Get.find();
-  HomeData homeData =HomeData(Get.find());
+  //HomeData homeData =HomeData(Get.find());
+
+
   String? username ;
   String? id ;
   String? lang ;
-   TextEditingController? search;
 
   List categories = [];
   List items = [];
-  late StatusRequest statusRequest;
-  bool isSearch =false;
 
-  checkSearch(val){
-    if(val == ""){
-      isSearch =false;
-    }
-    update();
+
+  //search
+
+  goToPageProductDetails(itemsModel){
+    Get.toNamed("productDetails",arguments: {
+      "itemsModel" : itemsModel
+    });
   }
 
-  onSearchItems(){
-    isSearch =true;
-    update();
-  }
+  //search
+
+
 
   @override
   initialData(){
@@ -72,6 +73,10 @@ class  HomeControllerImp extends HomeController{
     update();
   }
 
+
+
+
+
   @override
   goToItems(categories,  selectedCategories,categoryId) {
    Get.toNamed(AppRoutes.itemsPage,arguments: {
@@ -81,4 +86,44 @@ class  HomeControllerImp extends HomeController{
    });
   }
 
+}
+
+class SearchMixController extends GetxController{
+  HomeData homeData =HomeData(Get.find());
+  late StatusRequest statusRequest;
+  List<ItemsModel> listData = [];
+  bool isSearch =false;
+  TextEditingController? search;
+
+
+  checkSearch(val){
+    if(val == ""){
+      statusRequest =StatusRequest.none;
+      isSearch =false;
+    }
+    update();
+  }
+
+  onSearchItems(){
+    isSearch =true;
+    searchData();
+    update();
+  }
+
+  searchData() async {
+    statusRequest = StatusRequest.loading;
+    var response = await homeData.searchData(search!.text);
+    print("========================== $response controller");
+    statusRequest  = handlingData(response);
+    if(StatusRequest.success == statusRequest){
+      if(response['status'] == "success"){
+        listData.clear();
+        List responseData = response['data'];
+        listData.addAll(responseData.map((e) => ItemsModel.fromJson(e)));
+      }else{
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
 }

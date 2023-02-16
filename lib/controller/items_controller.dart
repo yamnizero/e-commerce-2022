@@ -1,5 +1,7 @@
- import 'package:ecommerc_2022/core/services/services.dart';
+ import 'package:ecommerc_2022/controller/home_controller.dart';
+import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/model/items_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../core/class/Statusrequest.dart';
@@ -14,7 +16,7 @@ abstract class ItemsController extends GetxController{
   goToPageProductDetails(ItemsModel itemsModel);
 }
 
-class ItemsControllerImp  extends ItemsController{
+class ItemsControllerImp  extends SearchMixController{
 
   List categories = [];
   String? catId ;
@@ -27,6 +29,7 @@ class ItemsControllerImp  extends ItemsController{
 
   @override
   void onInit() {
+    search = TextEditingController();
     intialData();
   }
 

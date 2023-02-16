@@ -1,6 +1,8 @@
 import 'package:ecommerc_2022/controller/items_controller.dart';
 import 'package:ecommerc_2022/core/class/handling_data_view.dart';
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/data/model/items_model.dart';
+import 'package:ecommerc_2022/view/screen/home.dart';
 import 'package:ecommerc_2022/view/widget/items/custom_list_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,17 +16,27 @@ class Items extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ItemsControllerImp());
+    ItemsControllerImp  controller = Get.put(ItemsControllerImp());
     FavoriteController favoriteController = Get.put(FavoriteController());
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(15),
         child: ListView(children: [
-          // CustomAppBar(
-          //   titleAppbar: "Find Product",
-          //   onPressedSearch: () {},
-          //   opPressedIconFavorite: (){},
-          // ),
+          CustomAppBar(
+            myController: controller.search!,
+            titleAppbar: "Find Product",
+            // opPressedIcon: () {},
+            onPressedSearch: () {
+              controller.onSearchItems();
+            },
+            onChanged: (val) {
+              controller.checkSearch(val);
+            },
+            opPressedIconFavorite: () {
+              Get.toNamed(AppRoutes.myFavorite);
+            },
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -32,7 +44,7 @@ class Items extends StatelessWidget {
           GetBuilder<ItemsControllerImp>(
               builder: (controller) => HandlingDataView(
                   statusRequest: controller.statusRequest,
-                  widget: GridView.builder(
+                  widget: !controller.isSearch ?GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: controller.data.length,
@@ -46,7 +58,7 @@ class Items extends StatelessWidget {
                           itemsModel:
                               ItemsModel.fromJson(controller.data[index]),
                         );
-                      }))),
+                      }): ListItemsSearch(listDataSearch: controller.listData,),)),
         ]),
       ),
     );
