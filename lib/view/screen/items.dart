@@ -20,11 +20,11 @@ class Items extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(15),
         child: ListView(children: [
-          CustomAppBar(
-            titleAppbar: "Find Product",
-            onPressedSearch: () {},
-            opPressedIconFavorite: (){},
-          ),
+          // CustomAppBar(
+          //   titleAppbar: "Find Product",
+          //   onPressedSearch: () {},
+          //   opPressedIconFavorite: (){},
+          // ),
           const SizedBox(
             height: 20,
           ),

@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeControllerImp());
 
-    return  GetBuilder<HomeControllerImp>(
+    return GetBuilder<HomeControllerImp>(
       builder: (controller) => HandlingDataView(
         statusRequest: controller.statusRequest,
         widget: Container(
@@ -25,25 +25,40 @@ class HomePage extends StatelessWidget {
           child: ListView(
             children: [
               CustomAppBar(
+                myController: controller.search!,
                 titleAppbar: "Find Product",
                 // opPressedIcon: () {},
-                onPressedSearch: () {},
-                opPressedIconFavorite: (){
+                onPressedSearch: () {
+                  controller.onSearchItems();
+                },
+                onChanged: (val) {
+                  controller.checkSearch(val);
+                },
+                opPressedIconFavorite: () {
                   Get.toNamed(AppRoutes.myFavorite);
                 },
               ),
-              const CustomCardSurpriseHome(
-                titleSurprise: "A summer surprise",
-                bodySurprise: "Cashback 20%",
-              ),
-              const CustomTitleHome(
-                titleHome: "Categories",
-              ),
-              const CustomListCategoriesHome(),
-              const CustomTitleHome(
-                titleHome: "Product for you",
-              ),
-              const CustomListItemsHome(),
+              !controller.isSearch
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        CustomCardSurpriseHome(
+                          titleSurprise: "A summer surprise",
+                          bodySurprise: "Cashback 20%",
+                        ),
+                        CustomTitleHome(
+                          titleHome: "Categories",
+                        ),
+                        CustomListCategoriesHome(),
+                        CustomTitleHome(
+                          titleHome: "Product for you",
+                        ),
+                        CustomListItemsHome(),
+                      ],
+                    )
+                  : Container(
+                      child: Text("Search"),
+                    ),
             ],
           ),
         ),

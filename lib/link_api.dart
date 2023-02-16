@@ -28,8 +28,11 @@ class AppLinkApi {
 
   /// home
   static const String homePage = "$server/home.php";
+
   /// items
   static const String items = "$server/items/items.php";
+  static const String searchItems = "$server/items/search.php";
+
   ///Favorite
   static const String favoriteAdd = "$server/favorite/add.php";
   static const String favoriteRemove = "$server/favorite/remove.php";

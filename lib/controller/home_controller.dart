@@ -2,6 +2,7 @@ import 'package:ecommerc_2022/core/class/Statusrequest.dart';
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/function/handlingData_controller.dart';
 import 'package:ecommerc_2022/data/datasource/remote/home_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../core/services/services.dart';
@@ -20,10 +21,24 @@ class  HomeControllerImp extends HomeController{
   String? username ;
   String? id ;
   String? lang ;
+   TextEditingController? search;
 
   List categories = [];
   List items = [];
   late StatusRequest statusRequest;
+  bool isSearch =false;
+
+  checkSearch(val){
+    if(val == ""){
+      isSearch =false;
+    }
+    update();
+  }
+
+  onSearchItems(){
+    isSearch =true;
+    update();
+  }
 
   @override
   initialData(){
@@ -33,6 +48,7 @@ class  HomeControllerImp extends HomeController{
   }
   @override
   void onInit() {
+    search = TextEditingController();
     getData();
     initialData();
 
