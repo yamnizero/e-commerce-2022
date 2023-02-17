@@ -1,5 +1,6 @@
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/middleware/my_middleware.dart';
+import 'package:ecommerc_2022/view/address/view_address.dart';
 import 'package:ecommerc_2022/view/screen/auth/forgetPassword/forget_password.dart';
 import 'package:ecommerc_2022/view/screen/auth/forgetPassword/verify_code.dart';
 import 'package:ecommerc_2022/view/screen/auth/login.dart';
@@ -42,4 +43,8 @@ List<GetPage<dynamic>>? routes= [
   GetPage(name: AppRoutes.productDetails, page: ()=> const ProductDetails()) ,
   GetPage(name: AppRoutes.myFavorite, page: ()=> const MyFavorite()) ,
   GetPage(name:  AppRoutes.cart, page: () => const Cart()),
+
+  ///Address
+  GetPage(name: AppRoutes.viewAddress, page: ()=> const ViewAddress()) ,
+
 ];

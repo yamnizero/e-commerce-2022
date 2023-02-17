@@ -19,4 +19,9 @@ class AppRoutes{
   static const String myFavorite = "/myFavorite";
   static const String cart = "/cart";
 
+  /// Address
+  static const String viewAddress = "/viewAddress";
+  static const String addAddress = "/addAddress";
+
+
 }
