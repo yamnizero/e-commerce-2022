@@ -1,4 +1,6 @@
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ViewAddress extends StatelessWidget {
   const ViewAddress({Key? key}) : super(key: key);
@@ -11,8 +13,10 @@ class ViewAddress extends StatelessWidget {
 
         title: const Text("Address"),),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.add),
+        onPressed: (){
+          Get.toNamed(AppRoutes.addAddress);
+        },
+        child: const Icon(Icons.add),
       ),
       body: Container(
         child: ListView(children: [],),
