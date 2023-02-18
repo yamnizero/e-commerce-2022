@@ -1,6 +1,7 @@
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/middleware/my_middleware.dart';
 import 'package:ecommerc_2022/view/address/add_address.dart';
+import 'package:ecommerc_2022/view/address/add_details.dart';
 import 'package:ecommerc_2022/view/address/view_address.dart';
 import 'package:ecommerc_2022/view/screen/auth/forgetPassword/forget_password.dart';
 import 'package:ecommerc_2022/view/screen/auth/forgetPassword/verify_code.dart';
@@ -48,5 +49,6 @@ List<GetPage<dynamic>>? routes= [
   ///Address
   GetPage(name: AppRoutes.viewAddress, page: ()=> const ViewAddress()) ,
   GetPage(name: AppRoutes.addAddress, page: ()=> const AddAddress()) ,
+  GetPage(name: AppRoutes.addAddressDetails, page: ()=> const AddAddressDetails()) ,
 
 ];
