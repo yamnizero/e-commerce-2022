@@ -11,7 +11,7 @@ class AddAddressDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AddAddressDetailsController controller =
+    AddAddressDetailsController controllerDetails =
     Get.put(AddAddressDetailsController());
     return Scaffold(
       //العناوين
@@ -31,7 +31,7 @@ class AddAddressDetails extends StatelessWidget {
                     hintText: "city",
                     label: "city",
                     iconData: Icons.location_city,
-                    myController: controller.city,
+                    myController: controllerDetails.city,
                     valid: (val) {},
                     isNumber: false,
                   ),
@@ -40,7 +40,7 @@ class AddAddressDetails extends StatelessWidget {
                     hintText: "street",
                     label: "street",
                     iconData: Icons.streetview,
-                    myController: controller.street,
+                    myController: controllerDetails.street,
                     valid: (val) {},
                     isNumber: false,
                   ),
@@ -49,11 +49,12 @@ class AddAddressDetails extends StatelessWidget {
                     hintText: "name",
                     label: "name",
                     iconData: Icons.near_me,
-                    myController: controller.name,
+                    myController: controllerDetails.name,
                     valid: (val) {},
                     isNumber: false,
                   ),
                   CustomButton(text: "Add", onPressed: () {
+                    print("====================================");
                     controller.addAddress();
 
                   },)

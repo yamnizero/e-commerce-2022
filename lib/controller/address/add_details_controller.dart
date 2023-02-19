@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class AddAddressDetailsController extends GetxController {
 
-  StatusRequest statusRequest = StatusRequest.loading;
+  StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   AddressData addressData =AddressData(Get.find());
 
