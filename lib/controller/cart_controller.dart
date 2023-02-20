@@ -16,6 +16,8 @@ class CartController extends GetxController{
   double priceOrder =0.0;
   int totalCountItems = 0;
 
+  TextEditingController? controllerCoupon;
+
 
   add(String itemsid) async {
 
@@ -70,6 +72,7 @@ class CartController extends GetxController{
     priceOrder = 0.0;
     data.clear();
   }
+
   refreshPage(){
     resetVarCart();
     view();
@@ -104,8 +107,9 @@ class CartController extends GetxController{
 
   @override
   void onInit() {
+    controllerCoupon =TextEditingController();
     view();
-    // TODO: implement onInit
+
     super.onInit();
   }
 
