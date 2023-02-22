@@ -1,6 +1,6 @@
 import 'package:ecommerc_2022/controller/cart_controller.dart';
 import 'package:ecommerc_2022/core/class/handling_data_view.dart';
-import 'package:ecommerc_2022/view/widget/cart/appBar_cart.dart';
+import 'package:ecommerc_2022/core/constant/color.dart';
 import 'package:ecommerc_2022/view/widget/cart/custom_bottom_Navigation_bar_cart.dart';
 import 'package:ecommerc_2022/view/widget/cart/custom_items_cart_list.dart';
 import 'package:ecommerc_2022/view/widget/cart/topcard_cart.dart';
@@ -14,13 +14,21 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     CartController cartController = Get.put(CartController());
     return Scaffold(
+      appBar: AppBar(
+
+        title:  const Text("My Cart"),
+
+      ),
       bottomNavigationBar:  GetBuilder<CartController>(
         builder: (controller) => BottomNavigationBarCart(
           controllerCoupon: controller.controllerCoupon!,
-        onApplyCoupon: (){},
-        price: '${cartController.priceOrder}',
-          discount: '10%',
-        totalPrice: '1700',
+          price: '${cartController.priceOrder}',
+          discount: '${controller.discountCoupon}%',
+            shipping: '10%',
+           totalPrice: '${controller.getTotalPriceAfterCoupon()}',
+          onApplyCoupon: (){
+            controller.checkCouponApply();
+          },
 
       ),),
       body: GetBuilder<CartController>(
@@ -28,9 +36,7 @@ class Cart extends StatelessWidget {
             statusRequest: controller.statusRequest,
             widget: ListView(
               children: [
-                const TopAppBarCart(
-                  title: "My Cart",
-                ),
+
                 const SizedBox(
                   height: 10,
                 ),

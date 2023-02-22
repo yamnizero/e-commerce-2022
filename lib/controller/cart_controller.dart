@@ -3,6 +3,7 @@ import 'package:ecommerc_2022/core/function/handlingData_controller.dart';
 import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/remote/cart_data.dart';
 import 'package:ecommerc_2022/data/model/cart_model.dart';
+import 'package:ecommerc_2022/data/model/coupon_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +18,9 @@ class CartController extends GetxController{
   int totalCountItems = 0;
 
   TextEditingController? controllerCoupon;
+  CouponModel? couponModel;
+  int? discountCoupon =0  ;
+  String? couponname ;
 
 
   add(String itemsid) async {
@@ -102,6 +106,36 @@ class CartController extends GetxController{
       }
     }
     update();
+  }
+
+  checkCouponApply() async{
+
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData.checkCoupon(
+     controllerCoupon!.text
+    );
+    print("========================== $response controller");
+    statusRequest  = handlingData(response);
+    if(StatusRequest.success == statusRequest){
+      if(response['status'] == "success"){
+        Map<String , dynamic> dataCoupon =  response['data'];
+        couponModel = CouponModel.fromJson(dataCoupon);
+        discountCoupon =int.parse(couponModel!.couponDiscount!);
+        couponname  = couponModel!.couponName;
+        // data.addAll(response['data']);
+      }else{
+        //statusRequest = StatusRequest.failure;
+        discountCoupon = 0;
+        couponname =null;
+
+      }
+    }
+    update();
+  }
+
+  getTotalPriceAfterCoupon(){
+    return (priceOrder - priceOrder * discountCoupon! / 100 );
   }
 
 

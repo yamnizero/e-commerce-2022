@@ -52,6 +52,10 @@ class AppLinkApi {
   static const String addressDelete = "$server/address/delete.php";
 
 
+  ///coupon
+  static const String checkCoupon = "$server/coupon/check_coupon.php";
+
+
 
 
 }

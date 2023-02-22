@@ -12,6 +12,7 @@ import 'package:ecommerc_2022/view/screen/auth/forgetPassword/success_reset_pass
 import 'package:ecommerc_2022/view/screen/auth/success_signup.dart';
 import 'package:ecommerc_2022/view/screen/auth/verify_code_signup.dart';
 import 'package:ecommerc_2022/view/screen/cart.dart';
+import 'package:ecommerc_2022/view/screen/checkout.dart';
 import 'package:ecommerc_2022/view/screen/home_screen.dart';
 import 'package:ecommerc_2022/view/screen/items.dart';
 import 'package:ecommerc_2022/view/screen/myFavorite.dart';
@@ -50,5 +51,8 @@ List<GetPage<dynamic>>? routes= [
   GetPage(name: AppRoutes.viewAddress, page: ()=> const ViewAddress()) ,
   GetPage(name: AppRoutes.addAddress, page: ()=> const AddAddress()) ,
   GetPage(name: AppRoutes.addAddressDetails, page: ()=> const AddAddressDetails()) ,
+
+  ///CheckOut
+  GetPage(name: AppRoutes.checkOut, page: ()=> const CheckOut()) ,
 
 ];
