@@ -1,4 +1,5 @@
 class AppLinkApi {
+
   /// ======================= Link => server ==================  ///
   static const String server = "https://ecommerce-app-flutter.000webhostapp.com/ecommerce";
 
@@ -54,6 +55,9 @@ class AppLinkApi {
 
   ///coupon
   static const String checkCoupon = "$server/coupon/check_coupon.php";
+
+  ///CheckOut
+  static const String checkOrders = "$server/orders/checkout.php";
 
 
 

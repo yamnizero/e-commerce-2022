@@ -1,4 +1,5 @@
 import 'package:ecommerc_2022/core/class/Statusrequest.dart';
+import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/core/function/handlingData_controller.dart';
 import 'package:ecommerc_2022/core/services/services.dart';
 import 'package:ecommerc_2022/data/datasource/remote/cart_data.dart';
@@ -21,6 +22,7 @@ class CartController extends GetxController{
   CouponModel? couponModel;
   int? discountCoupon =0  ;
   String? couponname ;
+  String? couponid ;
 
 
   add(String itemsid) async {
@@ -123,12 +125,13 @@ class CartController extends GetxController{
         couponModel = CouponModel.fromJson(dataCoupon);
         discountCoupon =int.parse(couponModel!.couponDiscount!);
         couponname  = couponModel!.couponName;
+        couponid = couponModel!.couponId;
         // data.addAll(response['data']);
       }else{
         //statusRequest = StatusRequest.failure;
         discountCoupon = 0;
-        couponname =null;
-
+        couponname = null;
+        couponid = null;
       }
     }
     update();
@@ -136,6 +139,15 @@ class CartController extends GetxController{
 
   getTotalPriceAfterCoupon(){
     return (priceOrder - priceOrder * discountCoupon! / 100 );
+  }
+
+  goToPageCheckOut(){
+    if(data.isEmpty) return Get.snackbar("تنبيه", "السله فارغه");
+    Get.toNamed(AppRoutes.checkOut,arguments: {
+      "couponid" : couponid ?? "0",
+      "priceOrder" :  priceOrder.toString(),
+    });
+
   }
 
 

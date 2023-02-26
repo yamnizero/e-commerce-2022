@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BottomNavigationBarCart extends StatelessWidget {
+class BottomNavigationBarCart extends GetView<CartController> {
   final String price;
   final String discount;
   final String shipping;
@@ -169,7 +169,9 @@ class BottomNavigationBarCart extends StatelessWidget {
           CustomButtonCart(
             textButton: "Order",
             onPressed: () {
-              Get.toNamed(AppRoutes.checkOut);
+              controller.goToPageCheckOut();
+
+              // Get.toNamed(AppRoutes.checkOut);
             },
           )
         ],

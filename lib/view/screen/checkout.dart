@@ -23,7 +23,9 @@ class CheckOut extends StatelessWidget {
         child: MaterialButton(
           color: AppColor.secondColor,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            controller.checkOut();
+          },
           child: const Text(
             "CheckOut",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -47,22 +49,22 @@ class CheckOut extends StatelessWidget {
                   ),
                   InkWell(
                       onTap: () {
-                        controller.choosesPaymentMethod("cash");
+                        controller.choosesPaymentMethod("0");
                       },
                       child:  CardPaymentMethodCheckOut(
                         title: "Cash On Delivery",
-                        isActive: controller.paymentMethod == "cash" ? true : false,
+                        isActive: controller.paymentMethod == "0" ? true : false,
                       )),
                   const SizedBox(
                     height: 10,
                   ),
                   InkWell(
                       onTap: () {
-                        controller.choosesPaymentMethod("card");
+                        controller.choosesPaymentMethod("1");
                       },
                       child:  CardPaymentMethodCheckOut(
                         title: "Payment Cards",
-                        isActive: controller.paymentMethod == "card" ? true : false,
+                        isActive: controller.paymentMethod == "1" ? true : false,
                       )),
                   const SizedBox(
                     height: 20,
@@ -82,11 +84,11 @@ class CheckOut extends StatelessWidget {
                     children:  [
                       InkWell(
                         onTap: () {
-                          controller.choosesDeliveryType("delivery");
+                          controller.choosesDeliveryType("0");
                         },
                         child: CardDeliveryTypeCheckOut(
                           title: "Delivery",
-                          isActive: controller.deliveryType == "delivery" ? true : false,
+                          isActive: controller.deliveryType == "0" ? true : false,
                           imageName: AppImageAsset.deliveryImage2,
                         ),
                       ),
@@ -95,11 +97,11 @@ class CheckOut extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          controller.choosesDeliveryType("receive");
+                          controller.choosesDeliveryType("1");
                         },
                         child: CardDeliveryTypeCheckOut(
                           title: "Receive",
-                          isActive: controller.deliveryType == "receive" ? true : false,
+                          isActive: controller.deliveryType == "1" ? true : false,
                           imageName: AppImageAsset.driveThroughImage,
                         ),
                       ),
@@ -108,7 +110,7 @@ class CheckOut extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  if(controller.deliveryType == "delivery")
+                  if(controller.deliveryType == "0")
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -130,7 +132,7 @@ class CheckOut extends StatelessWidget {
                         child: CardShippingAddressCheckOut(
                           title: "${controller.dataAddress[index].addressName}",
                           body: " city: ${controller.dataAddress[index].addressCity}  street: ${controller.dataAddress[index].addressStreet}",
-                          isActive: controller.addressid == controller.dataAddress[index].addressId ? true :false,
+                          isActive: controller.addressId == controller.dataAddress[index].addressId ? true :false,
                         ),
                       )),
 
