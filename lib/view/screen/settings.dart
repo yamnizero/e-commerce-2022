@@ -57,6 +57,22 @@ class Settings extends StatelessWidget {
                   ),
                   const Divider(),
                   ListTile(
+                    title: const Text('Orders'),
+                    trailing: const Icon(Icons.card_travel),
+                    onTap: () {
+                      Get.toNamed(AppRoutes.viewAddress);
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    title: const Text('Archive'),
+                    trailing: const Icon(Icons.archive),
+                    onTap: () {
+                      Get.toNamed(AppRoutes.viewAddress);
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
                     title: const Text('Address'),
                     trailing: const Icon(Icons.location_on_outlined),
                     onTap: () {
