@@ -60,7 +60,7 @@ class Settings extends StatelessWidget {
                     title: const Text('Orders'),
                     trailing: const Icon(Icons.card_travel),
                     onTap: () {
-                      Get.toNamed(AppRoutes.viewAddress);
+                      Get.toNamed(AppRoutes.pendingOrders);
                     },
                   ),
                   const Divider(),

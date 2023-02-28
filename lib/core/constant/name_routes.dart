@@ -27,5 +27,8 @@ class AppRoutes{
   ///CheckOut
   static const String checkOut = "/checkOut";
 
+  ///Orders
+  static const String pendingOrders = "/pendingOrders";
+
 
 }
