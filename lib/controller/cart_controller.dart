@@ -21,8 +21,8 @@ class CartController extends GetxController{
   TextEditingController? controllerCoupon;
   CouponModel? couponModel;
   int? discountCoupon =0  ;
-  String? couponname ;
-  String? couponid ;
+  String? couponName ;
+  String? couponId ;
 
 
   add(String itemsid) async {
@@ -124,14 +124,15 @@ class CartController extends GetxController{
         Map<String , dynamic> dataCoupon =  response['data'];
         couponModel = CouponModel.fromJson(dataCoupon);
         discountCoupon =int.parse(couponModel!.couponDiscount!);
-        couponname  = couponModel!.couponName;
-        couponid = couponModel!.couponId;
+        couponName  = couponModel!.couponName;
+        couponId = couponModel!.couponId;
         // data.addAll(response['data']);
       }else{
         //statusRequest = StatusRequest.failure;
         discountCoupon = 0;
-        couponname = null;
-        couponid = null;
+        couponName = null;
+        couponId = null;
+        Get.snackbar("Warning", "Coupon Not Valid");
       }
     }
     update();
@@ -144,8 +145,9 @@ class CartController extends GetxController{
   goToPageCheckOut(){
     if(data.isEmpty) return Get.snackbar("تنبيه", "السله فارغه");
     Get.toNamed(AppRoutes.checkOut,arguments: {
-      "couponid" : couponid ?? "0",
+      "couponId" : couponId ?? "0",
       "priceOrder" :  priceOrder.toString(),
+      "discountCoupon" : discountCoupon.toString(),
     });
 
   }

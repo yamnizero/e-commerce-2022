@@ -22,8 +22,9 @@ class CheckOutController extends GetxController {
   List<AddressModel> dataAddress = [];
 
 
-  late String couponid;
+  late String couponId;
   late String priceOrders;
+  late String couponDiscount;
 
 
 
@@ -72,7 +73,8 @@ class CheckOutController extends GetxController {
     "orderstype" :  deliveryType.toString(),
     "pricedelivery" : "10",
     "ordersprice" : priceOrders,
-    "couponid" : couponid,
+    "couponid" : couponId,
+    "couponDiscount" : couponDiscount.toString(),
     "paymentmethod" : paymentMethod.toString(),
     };
     var response = await checkOutData.checkOut(data);
@@ -92,8 +94,9 @@ class CheckOutController extends GetxController {
   }
   @override
   void onInit() {
-    couponid = Get.arguments['couponid'];
+    couponId = Get.arguments['couponId'];
     priceOrders = Get.arguments['priceOrder'];
+    couponDiscount = Get.arguments['discountCoupon'].toString();
     getShippingAddress();
     super.onInit();
   }

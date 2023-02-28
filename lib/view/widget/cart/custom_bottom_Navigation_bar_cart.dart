@@ -35,7 +35,7 @@ class BottomNavigationBarCart extends GetView<CartController> {
             children: [
               GetBuilder<CartController>(
                   builder: ((controller) =>
-                      controller.couponname == null
+                      controller.couponName == null
                           ? Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Row(
@@ -66,7 +66,7 @@ class BottomNavigationBarCart extends GetView<CartController> {
                         ),
                       )
                           : Container(child: Text(
-                          "Coupon Code ${controller.couponname!}",
+                          "Coupon Code ${controller.couponName!}",
                         style: const TextStyle(color: AppColor.primaryColor,fontWeight: FontWeight.bold) ,
                       ))
 

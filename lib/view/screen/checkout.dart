@@ -49,22 +49,22 @@ class CheckOut extends StatelessWidget {
                   ),
                   InkWell(
                       onTap: () {
-                        controller.choosesPaymentMethod("0");
+                        controller.choosesPaymentMethod("cash");
                       },
                       child:  CardPaymentMethodCheckOut(
                         title: "Cash On Delivery",
-                        isActive: controller.paymentMethod == "0" ? true : false,
+                        isActive: controller.paymentMethod == "cash" ? true : false,
                       )),
                   const SizedBox(
                     height: 10,
                   ),
                   InkWell(
                       onTap: () {
-                        controller.choosesPaymentMethod("1");
+                        controller.choosesPaymentMethod("card");
                       },
                       child:  CardPaymentMethodCheckOut(
                         title: "Payment Cards",
-                        isActive: controller.paymentMethod == "1" ? true : false,
+                        isActive: controller.paymentMethod == "card" ? true : false,
                       )),
                   const SizedBox(
                     height: 20,
@@ -84,11 +84,11 @@ class CheckOut extends StatelessWidget {
                     children:  [
                       InkWell(
                         onTap: () {
-                          controller.choosesDeliveryType("0");
+                          controller.choosesDeliveryType("delivery");
                         },
                         child: CardDeliveryTypeCheckOut(
                           title: "Delivery",
-                          isActive: controller.deliveryType == "0" ? true : false,
+                          isActive: controller.deliveryType == "delivery" ? true : false,
                           imageName: AppImageAsset.deliveryImage2,
                         ),
                       ),
@@ -97,11 +97,11 @@ class CheckOut extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          controller.choosesDeliveryType("1");
+                          controller.choosesDeliveryType("receive");
                         },
                         child: CardDeliveryTypeCheckOut(
                           title: "Receive",
-                          isActive: controller.deliveryType == "1" ? true : false,
+                          isActive: controller.deliveryType == "receive" ? true : false,
                           imageName: AppImageAsset.driveThroughImage,
                         ),
                       ),
@@ -110,7 +110,7 @@ class CheckOut extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  if(controller.deliveryType == "0")
+                  if(controller.deliveryType == "delivery")
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
