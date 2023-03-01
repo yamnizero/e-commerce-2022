@@ -12,6 +12,37 @@ class OrdersPendingController extends GetxController{
   late StatusRequest statusRequest;
   MyServices myServices = Get.find();
 
+  // String printOrderType(String val){
+  //   if(val == "0"){
+  //     return "Delivery";
+  //   }else{
+  //     return "Receive";
+  //   }
+  // }
+  String printOrderStatus  (String val){
+    if(val == "0"){
+      return "Pending Approval";
+    }else if(val == "1"){
+      return "The Order is being Prepare";
+    }else if(val == "2"){
+      return "On The Way";
+    }else{
+      return "Archive";
+    }
+  }
+
+  // String printPaymentMethod  (String val){
+  //   if(val == "0"){
+  //     return "Cash On Delivery";
+  //   }else{
+  //     return " Payment Card";
+  //   }
+  // }
+
+
+
+
+
   getOrders() async{
     data.clear();
     statusRequest = StatusRequest.loading;
