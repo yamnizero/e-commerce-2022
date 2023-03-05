@@ -58,11 +58,15 @@ class LoginControllerImp extends LoginController{
           // data.addAll(response['data']);
           if(response['data']['users_approve'] == "1"){
             myServices.sharedPreferences.setString("id", response['data']['users_id']);
+            String userid =myServices.sharedPreferences.getString("id")!;
             myServices.sharedPreferences.setString("username", response['data']['users_name']);
             myServices.sharedPreferences.setString("email", response['data']['users_email']);
             myServices.sharedPreferences.setString("phone", response['data']['users_phone']);
             //
             myServices.sharedPreferences.setString("step", "2");
+
+            FirebaseMessaging.instance.subscribeToTopic("users");
+            FirebaseMessaging.instance.subscribeToTopic("users${userid}");
           }else{
             Get.toNamed(AppRoutes.verifyCodeSignUp,arguments: {"email" : email.text});
           }

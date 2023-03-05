@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "124530646365",
-    "project_id": "ecommerce2022-ac602",
-    "storage_bucket": "ecommerce2022-ac602.appspot.com"
+    "project_number": "348505683799",
+    "project_id": "ecommerce2022-378117",
+    "storage_bucket": "ecommerce2022-378117.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:124530646365:android:41a44d228c3c9b304c5cb4",
+        "mobilesdk_app_id": "1:348505683799:android:041749a187b568e80e7012",
         "android_client_info": {
           "package_name": "com.example.ecommerc_2022"
         }
       },
       "oauth_client": [
         {
-          "client_id": "124530646365-0c5iricbbms3uauucboh9936ur4unnqt.apps.googleusercontent.com",
+          "client_id": "348505683799-prig35l3moqq8n22qs8drpm6iib1c0j8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ecommerc_2022",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "124530646365-81j4q5jqggp3dbp2erinfv09n7se2eb8.apps.googleusercontent.com",
+          "client_id": "348505683799-ouu271g92471huksfsku3oldjgbq96ld.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJnz-9055yVnB0d3e7VyfDnHZ5eJceEnc"
+          "current_key": "AIzaSyB6WCKMHkT6cV69KkVCKfTUCnmNZhkCeo8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "124530646365-81j4q5jqggp3dbp2erinfv09n7se2eb8.apps.googleusercontent.com",
+              "client_id": "348505683799-ouu271g92471huksfsku3oldjgbq96ld.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

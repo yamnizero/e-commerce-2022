@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerc_2022/controller/home_controller.dart';
-import 'package:ecommerc_2022/controller/home_screen_controller.dart';
 import 'package:ecommerc_2022/core/class/handling_data_view.dart';
 import 'package:ecommerc_2022/core/constant/name_routes.dart';
 import 'package:ecommerc_2022/data/model/items_model.dart';
